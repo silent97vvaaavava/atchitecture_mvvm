@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace CodeBase.Infrastructure
 {
-    public class LoaderState : BaseState
+    public class StateLoader : StateBase
     {
         private ILoadingCurtain _curtain;
         private DatabaseService _dbService;
 
-        public LoaderState(
-            IGameStateMachine gameStateMachine,
+        public StateLoader(
+            IGameFsm gameFsm,
             DatabaseService dbService,
             ILoadingCurtain curtain
-        ) : base(gameStateMachine)
+        ) : base(gameFsm)
         {
             _dbService = dbService;
             _curtain = curtain;
@@ -25,7 +25,7 @@ namespace CodeBase.Infrastructure
 
         public override void Exit()
         {
-            _gameStateMachine.Enter<GameplayState>();
+            GameFsm.Enter<StateGameplay>();
         }
     }
 }

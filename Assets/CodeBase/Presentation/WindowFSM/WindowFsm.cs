@@ -4,7 +4,7 @@ using CodeBase.StaticData;
 
 namespace CodeBase.Presentation
 {
-    public abstract class WindowFsmBase : IWindowFsm
+    public class WindowFsm : IWindowFsm
     {
         public event Action<UiWindow> Opened;
         public event Action<UiWindow> Closed;
@@ -17,7 +17,7 @@ namespace CodeBase.Presentation
         public UiWindow CurrentWindow { get; }
         public virtual bool IsOpenWindow => _currentWindow != null;
 
-        protected WindowFsmBase()
+        protected WindowFsm()
         {
             _stack = new Stack<IWindow>();
             
@@ -75,6 +75,7 @@ namespace CodeBase.Presentation
         protected virtual Dictionary<UiWindow, IWindow> ResolveWindows() =>
             new()
             {
+                [UiWindow.Loader] = new Window(UiWindow.SignIn),
                 [UiWindow.Loader] = new Window(UiWindow.Loader),
                 [UiWindow.Menu] = new Window(UiWindow.Menu),
                 // etc.

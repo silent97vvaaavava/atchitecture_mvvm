@@ -1,5 +1,6 @@
 using CodeBase.Helpers;
 using CodeBase.Infrastructure;
+using CodeBase.Presentation;
 using CodeBase.Presentation.Views;
 using CodeBase.Services;
 using UnityEngine;
@@ -22,6 +23,9 @@ namespace CodeBase.Installers
                 .AsSingle()
                 .NonLazy();
 
+            // Window Fsm 
+            BindingWindowFsm();
+            
             Container
                 .BindInterfacesAndSelfTo<LoadingCurtainView>()
                 .FromInstance(curtainView)
@@ -35,7 +39,16 @@ namespace CodeBase.Installers
                 .NonLazy();
 
             Container
-                .BindInterfacesAndSelfTo<GameStateMachine>()
+                .BindInterfacesAndSelfTo<GameFsm>()
+                .FromNew()
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindingWindowFsm()
+        {
+            Container
+                .BindInterfacesAndSelfTo<WindowFsm>()
                 .FromNew()
                 .AsSingle()
                 .NonLazy();

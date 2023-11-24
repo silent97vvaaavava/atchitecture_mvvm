@@ -6,7 +6,7 @@ using Zenject;
 
 namespace CodeBase.Infrastructure
 {
-    public class GameStateMachine : IGameStateMachine, IInitializable
+    public class GameFsm : IGameFsm, IInitializable
     {
         private readonly ILoadingCurtain _curtain;
         private readonly InternetReachability _internetReachability;
@@ -15,7 +15,7 @@ namespace CodeBase.Infrastructure
         private readonly Dictionary<Type, IExitableState> _states;
         private IExitableState _activeState;
         
-        public GameStateMachine(
+        public GameFsm(
             ILoadingCurtain curtain,
             InternetReachability internetReachability,
             DatabaseService dbService
@@ -23,10 +23,10 @@ namespace CodeBase.Infrastructure
         {
             _states = new Dictionary<Type, IExitableState>()
             {
-                [typeof(InitializeState)] = new InitializeState(this, internetReachability, curtain, dbService),
-                [typeof(LoaderState)] = new LoaderState(this, dbService, curtain),
-                [typeof(GameplayState)] = new GameplayState(this),
-                [typeof(PauseState)] = new PauseState(this)
+                [typeof(StateInitialize)] = new StateInitialize(this, internetReachability, curtain, dbService),
+                [typeof(StateLoader)] = new StateLoader(this, dbService, curtain),
+                [typeof(StateGameplay)] = new StateGameplay(this),
+                [typeof(StatePause)] = new StatePause(this)
             };
             _curtain = curtain;
         }
@@ -41,7 +41,6 @@ namespace CodeBase.Infrastructure
         private TState ChangeState<TState>()
             where TState : class, IExitableState
         {
-            // _activeState?.Exit();
             _curtain?.Show();
             TState state = GetState<TState>();
             _activeState = state;
@@ -54,7 +53,7 @@ namespace CodeBase.Infrastructure
 
         public void Initialize()
         {
-            Enter<InitializeState>();
+            Enter<StateInitialize>();
         }
     }
 }
