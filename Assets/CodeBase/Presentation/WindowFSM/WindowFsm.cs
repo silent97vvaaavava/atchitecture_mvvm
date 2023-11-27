@@ -75,7 +75,9 @@ namespace CodeBase.Presentation
         protected virtual Dictionary<UiWindow, IWindow> ResolveWindows() =>
             new()
             {
-                [UiWindow.Loader] = new Window(UiWindow.SignIn),
+                [UiWindow.Curtain] = new Window(UiWindow.Curtain),
+                [UiWindow.Internet] = new Window(UiWindow.Internet),
+                [UiWindow.SignIn] = new Window(UiWindow.SignIn),
                 [UiWindow.Loader] = new Window(UiWindow.Loader),
                 [UiWindow.Menu] = new Window(UiWindow.Menu),
                 // etc.
