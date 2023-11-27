@@ -1,5 +1,7 @@
 using CodeBase.Helpers;
 using CodeBase.Infrastructure;
+using CodeBase.Infrastructure.Factories;
+using CodeBase.Infrastructure.Providers;
 using CodeBase.Presentation;
 using CodeBase.Presentation.Views;
 using CodeBase.Services;
@@ -23,6 +25,12 @@ namespace CodeBase.Installers
                 .AsSingle()
                 .NonLazy();
 
+            // Factory 
+            BindingFactory();
+            
+            // Providers
+            BindingProviders();
+            
             // Window Fsm 
             BindingWindowFsm();
             
@@ -49,6 +57,24 @@ namespace CodeBase.Installers
         {
             Container
                 .BindInterfacesAndSelfTo<WindowFsm>()
+                .FromNew()
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindingFactory()
+        {
+            Container
+                .BindInterfacesAndSelfTo<ViewModelFactory>()
+                .FromNew()
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindingProviders()
+        {
+            Container
+                .BindInterfacesAndSelfTo<ViewModelProvider>()
                 .FromNew()
                 .AsSingle()
                 .NonLazy();
