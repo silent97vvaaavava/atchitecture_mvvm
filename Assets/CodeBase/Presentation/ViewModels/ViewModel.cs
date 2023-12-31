@@ -29,4 +29,36 @@ namespace CodeBase.Presentation.ViewModels
                 InvokedClose?.Invoke();
         }
     }
+    
+    public abstract class ViewModel<TWindow, TModel> : IViewModel
+    where TModel : class
+    where TWindow : Enum
+    {
+        public event Action InvokedOpen;
+        public event Action InvokedClose;
+        
+        protected TModel _model;
+        protected readonly IWindowFsm<TWindow> _windowFsm;
+
+        protected virtual TWindow Window { get; }
+
+        protected ViewModel(IWindowFsm<TWindow> windowFsm)
+        {
+            _windowFsm = windowFsm;
+        }
+
+        public abstract void InvokeOpen();
+
+        public abstract void InvokeClose();
+        
+        protected virtual void HandleOpenedWindow(TWindow uiWindow)
+        {
+            if(Window.Equals(uiWindow)) InvokedOpen?.Invoke();
+        }
+
+        protected virtual void HandleClosedWindow(TWindow uiWindow)
+        {
+            if(Window.Equals(uiWindow)) InvokedClose?.Invoke();
+        }
+    }
 }

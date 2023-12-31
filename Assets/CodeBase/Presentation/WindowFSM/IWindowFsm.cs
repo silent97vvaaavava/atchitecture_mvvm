@@ -17,4 +17,20 @@ namespace CodeBase.Presentation
         void CloseCurrentWindow();
         void ClearHistory();
     }
+    
+    public interface IWindowFsm<TWindow>
+    where TWindow : Enum
+    {
+        event Action<TWindow> Opened;
+        event Action<TWindow> Closed;
+        
+        TWindow CurrentWindow { get; }
+        bool IsOpenWindow { get; }
+        
+        void OpenWindow(TWindow window);
+        void OpenOneWindow(TWindow window);
+        void CloseWindow(TWindow window);
+        void CloseCurrentWindow();
+        void ClearHistory();
+    }
 }

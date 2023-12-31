@@ -9,6 +9,10 @@ namespace CodeBase.StaticData
         Menu,
         // etc
     }
-    
+
+    public enum TableType
+    {
+        Default,
+    }
     
 }

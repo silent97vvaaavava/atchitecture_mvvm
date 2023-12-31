@@ -27,10 +27,7 @@ namespace CodeBase.Infrastructure.Providers
         public void Set<TValue>() where TValue : class, IViewModel
         {
             TValue value = _factory.Create<TValue>();
-            if(_viewModels.TryAdd(typeof(TValue), value))
-                Debug.Log("Success add");
-            else 
-                Debug.Log("Failed add");
+            Debug.Log(_viewModels.TryAdd(typeof(TValue), value) ? "Success add" : "Failed add");
         }
     }
 }

@@ -7,4 +7,10 @@ namespace CodeBase.Presentation.Elements
     {
         void Set(TValue value);
     }
+    
+    public interface IGraphicElement<in TValue>
+    where TValue : class, IDto
+    {
+        void Set(TValue value);
+    }
 }

@@ -13,4 +13,16 @@ namespace CodeBase.Presentation
         void Open();
         void Close();
     }
+    
+    public interface IWindow<out TWindow>
+    where TWindow : Enum
+    {
+        event Action<TWindow> Opened;
+        event Action<TWindow> Closed;
+        
+        TWindow UIWindow { get; }
+        
+        void Open();
+        void Close();
+    }
 }

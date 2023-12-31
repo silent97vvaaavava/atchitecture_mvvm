@@ -2,7 +2,9 @@
 
 namespace CodeBase.Infrastructure.Providers
 {
-    public interface IViewModelProvider : IProviderGet<IViewModel>,  IProviderSet<IViewModel> 
+    public interface IViewModelProvider : 
+        IProviderGet<IViewModel>, 
+        IProviderSet<IViewModel> 
     {
     }
 }
