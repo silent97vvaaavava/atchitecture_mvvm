@@ -5,7 +5,7 @@ using Zenject;
 
 namespace CodeBase.Presentation.Views
 {
-    public class SignInView : ViewBase<SignInViewModel>
+    public class SignInView : BaseView<SignInViewModel>
     {
         [SerializeField] private Transform _container;
         

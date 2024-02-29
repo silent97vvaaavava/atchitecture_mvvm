@@ -1,16 +1,15 @@
 using System;
-using CodeBase.StaticData;
 
 namespace CodeBase.Presentation
 {
     public sealed class Window : IWindow
     {
-        public event Action<UiWindow> Opened;
-        public event Action<UiWindow> Closed;
+        public event Action<Type> Opened;
+        public event Action<Type> Closed;
         
-        public UiWindow UIWindow { get; }
+        public Type UIWindow { get; }
 
-        public Window(UiWindow uiWindow)
+        public Window(Type uiWindow)
         {
             UIWindow = uiWindow;
         }

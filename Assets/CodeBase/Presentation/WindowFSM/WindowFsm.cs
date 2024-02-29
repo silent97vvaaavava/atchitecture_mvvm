@@ -1,36 +1,39 @@
 using System;
 using System.Collections.Generic;
+using CodeBase.Presentation.Views;
 using CodeBase.StaticData;
 
 namespace CodeBase.Presentation
 {
     public class WindowFsm : IWindowFsm
     {
-        public event Action<UiWindow> Opened;
-        public event Action<UiWindow> Closed;
+        public event Action<Type> Opened;
+        public event Action<Type> Closed;
 
-        private readonly Dictionary<UiWindow, IWindow> _windows;
+        private readonly Dictionary<Type, IWindow> _windows;
         private readonly Stack<IWindow> _stack;
         
         private IWindow _currentWindow;
 
-        public UiWindow CurrentWindow { get; }
+        public Type CurrentWindow { get; }
         public virtual bool IsOpenWindow => _currentWindow != null;
 
         protected WindowFsm()
         {
             _stack = new Stack<IWindow>();
-            
-            _windows = ResolveWindows();
+        }
 
-            foreach (IWindow window in _windows.Values)
-            {
-                window.Opened += OnOpened;
-                window.Closed += OnClosed;
-            }
+        public void Set<TView>() 
+            where TView : class, IView
+        {
+            if(_windows.ContainsKey(typeof(TView))) return;
+            var window =  new Window(typeof(TView));
+            window.Opened += OnOpened;
+            window.Closed += OnClosed;
+            _windows.Add(typeof(TView), window);
         }
         
-        public virtual void OpenWindow(UiWindow window)
+        public virtual void OpenWindow(Type window)
         {
             if(_currentWindow == _windows[window])
                 return;
@@ -41,12 +44,12 @@ namespace CodeBase.Presentation
             _currentWindow?.Open();
         }
 
-        public virtual void OpenOneWindow(UiWindow window) // ToDo: подумать как обыграть момент с алертами (pop-up)
+        public virtual void OpenOneWindow(Type window) 
         {
             _windows[window]?.Open();
         }
 
-        public virtual void CloseWindow(UiWindow window)
+        public virtual void CloseWindow(Type window)
         {
             var windowClose = _windows[window];
             windowClose?.Close();
@@ -69,18 +72,7 @@ namespace CodeBase.Presentation
                 _stack.Push(_currentWindow);
         }
         
-        protected virtual void OnOpened(UiWindow window) => Opened?.Invoke(window);
-        protected virtual void OnClosed(UiWindow window) => Closed?.Invoke(window);
-
-        protected virtual Dictionary<UiWindow, IWindow> ResolveWindows() =>
-            new()
-            {
-                [UiWindow.Curtain] = new Window(UiWindow.Curtain),
-                [UiWindow.Internet] = new Window(UiWindow.Internet),
-                [UiWindow.SignIn] = new Window(UiWindow.SignIn),
-                [UiWindow.Loader] = new Window(UiWindow.Loader),
-                [UiWindow.Menu] = new Window(UiWindow.Menu),
-                // etc.
-            };
+        protected virtual void OnOpened(Type window) => Opened?.Invoke(window);
+        protected virtual void OnClosed(Type window) => Closed?.Invoke(window);
     }
 }

@@ -5,22 +5,10 @@ namespace CodeBase.Presentation
 {
     public interface IWindow
     {
-        event Action<UiWindow> Opened;
-        event Action<UiWindow> Closed;
+        event Action<Type> Opened;
+        event Action<Type> Closed;
         
-        UiWindow UIWindow { get; }
-        
-        void Open();
-        void Close();
-    }
-    
-    public interface IWindow<out TWindow>
-    where TWindow : Enum
-    {
-        event Action<TWindow> Opened;
-        event Action<TWindow> Closed;
-        
-        TWindow UIWindow { get; }
+        Type UIWindow { get; }
         
         void Open();
         void Close();

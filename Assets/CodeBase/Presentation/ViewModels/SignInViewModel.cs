@@ -1,14 +1,14 @@
 ﻿using System;
-using CodeBase.StaticData;
+using CodeBase.Presentation.Views;
 
 namespace CodeBase.Presentation.ViewModels
 {
-    public class SignInViewModel : ViewModelBase
+    public class SignInViewModel : BaseViewModel
     {
         public event Action InvokedOpen;
         public event Action InvokedClose;
 
-        protected override UiWindow Window => UiWindow.SignIn;
+        protected override Type Window => typeof(SignInView);
 
         public override void InvokeOpen()
         {

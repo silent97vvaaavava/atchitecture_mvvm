@@ -1,26 +1,25 @@
 ﻿using System;
-using CodeBase.StaticData;
 
 namespace CodeBase.Presentation.ViewModels
 {
-    public abstract class ViewModelBase : IViewModel
+    public abstract class BaseViewModel : IViewModel
     {
         public event Action InvokedOpen;
         public event Action InvokedClose;
 
-        protected virtual UiWindow Window => UiWindow.Curtain;
-        
+        protected virtual Type Window { get; }
+
         public abstract void InvokeOpen();
 
         public abstract void InvokeClose();
         
-        protected virtual void HandleOpenedWindow(UiWindow uiWindow)
+        protected virtual void HandleOpenedWindow(Type uiWindow)
         {
             if(Window == uiWindow)
                 InvokedOpen?.Invoke();
         }
 
-        protected virtual void HandleClosedWindow(UiWindow uiWindow)
+        protected virtual void HandleClosedWindow(Type uiWindow)
         {
             if(Window == uiWindow)
                 InvokedClose?.Invoke();
