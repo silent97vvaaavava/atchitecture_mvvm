@@ -10,6 +10,10 @@ namespace CodeBase.Presentation.ViewModels
 
         protected override Type Window => typeof(SignInView);
 
+        public SignInViewModel(IWindowFsm windowFsm) : base(windowFsm)
+        {
+        }
+        
         public override void InvokeOpen()
         {
             
@@ -18,5 +22,7 @@ namespace CodeBase.Presentation.ViewModels
         public override void InvokeClose()
         {
         }
+
+       
     }
 }

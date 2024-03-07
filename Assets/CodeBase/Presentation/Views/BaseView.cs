@@ -38,7 +38,13 @@ namespace CodeBase.Presentation.Views
             }
         }
 
-        protected abstract void Construct(ViewModelProvider provider);
+        protected virtual void Construct(ViewModelProvider provider)
+        {
+            _viewModel = provider.Get<TViewModel>();
+
+            _viewModel.InvokedOpen += Show;
+            _viewModel.InvokedClose += Hide;
+        }
 
         public virtual void Show()
         {

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using CodeBase.Presentation.Views;
-using CodeBase.StaticData;
 
 namespace CodeBase.Presentation
 {

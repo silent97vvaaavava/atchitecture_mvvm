@@ -2,11 +2,11 @@
 
 namespace CodeBase.Infrastructure
 {
-    public abstract class StateBase : IState
+    public abstract class BaseState : IState
     {
         protected readonly IGameFsm GameFsm;
 
-        protected StateBase(IGameFsm gameFsm)
+        protected BaseState(IGameFsm gameFsm)
         {
             GameFsm = gameFsm;
         }

@@ -8,27 +8,18 @@ namespace CodeBase.Infrastructure
 {
     public class GameFsm : IGameFsm, IInitializable
     {
-        private readonly ILoadingCurtain _curtain;
-        private readonly InternetReachability _internetReachability;
-        private readonly DatabaseService _dbService;
-        
         private readonly Dictionary<Type, IExitableState> _states;
         private IExitableState _activeState;
         
-        public GameFsm(
-            ILoadingCurtain curtain,
-            InternetReachability internetReachability,
-            DatabaseService dbService
-            )
+        public GameFsm()
         {
             _states = new Dictionary<Type, IExitableState>()
             {
-                [typeof(StateInitialize)] = new StateInitialize(this, internetReachability, curtain, dbService),
-                [typeof(StateLoader)] = new StateLoader(this, dbService, curtain),
-                [typeof(StateGameplay)] = new StateGameplay(this),
-                [typeof(StatePause)] = new StatePause(this)
+                [typeof(InitializeState)] = new InitializeState(this),
+                [typeof(LoaderState)] = new LoaderState(this),
+                [typeof(GameplayState)] = new GameplayState(this),
+                [typeof(PauseState)] = new PauseState(this)
             };
-            _curtain = curtain;
         }
         
         public void Enter<TState>() 
@@ -41,19 +32,19 @@ namespace CodeBase.Infrastructure
         private TState ChangeState<TState>()
             where TState : class, IExitableState
         {
-            _curtain?.Show();
             TState state = GetState<TState>();
+            _activeState?.Exit();
             _activeState = state;
-
             return state;
         }
 
-        private TState GetState<TState>() where TState : class, IExitableState => 
+        private TState GetState<TState>() 
+            where TState : class, IExitableState => 
             _states[typeof(TState)] as TState;
 
         public void Initialize()
         {
-            Enter<StateInitialize>();
+            Enter<InitializeState>();
         }
     }
 }

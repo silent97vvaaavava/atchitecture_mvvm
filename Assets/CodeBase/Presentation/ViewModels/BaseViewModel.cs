@@ -7,8 +7,15 @@ namespace CodeBase.Presentation.ViewModels
         public event Action InvokedOpen;
         public event Action InvokedClose;
 
+        protected readonly IWindowFsm _windowFsm;
+        
         protected virtual Type Window { get; }
 
+        public BaseViewModel(IWindowFsm windowFsm)
+        {
+            _windowFsm = windowFsm;
+        }
+        
         public abstract void InvokeOpen();
 
         public abstract void InvokeClose();
