@@ -25,6 +25,11 @@ namespace CodeBase.Installers
                 .AsSingle()
                 .NonLazy();
 
+            Container
+                .BindInterfacesAndSelfTo<WindowFsmProvider>()
+                .AsSingle()
+                .NonLazy();
+            
             // Factory 
             BindingFactory();
             
