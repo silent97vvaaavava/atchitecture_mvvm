@@ -14,6 +14,8 @@ namespace CodeBase.Presentation.Views
         protected override void Construct(ViewModelProvider provider)
         {
             base.Construct(provider);
+            
+            _closeButton.onClick.AddListener(_viewModel.InvokeClose);
         }
     }
 }

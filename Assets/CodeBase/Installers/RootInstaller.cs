@@ -24,11 +24,6 @@ namespace CodeBase.Installers
                 .FromNew()
                 .AsSingle()
                 .NonLazy();
-
-            Container
-                .BindInterfacesAndSelfTo<WindowFsmProvider>()
-                .AsSingle()
-                .NonLazy();
             
             // Factory 
             BindingFactory();
@@ -63,6 +58,15 @@ namespace CodeBase.Installers
             Container
                 .BindInterfacesAndSelfTo<WindowFsm>()
                 .FromNew()
+                .AsSingle()
+                .NonLazy();
+            
+            var provider = Container
+                .Instantiate<WindowFsmProvider>();            
+            
+            Container
+                .BindInterfacesAndSelfTo<WindowFsmProvider>()
+                .FromInstance(provider)
                 .AsSingle()
                 .NonLazy();
         }

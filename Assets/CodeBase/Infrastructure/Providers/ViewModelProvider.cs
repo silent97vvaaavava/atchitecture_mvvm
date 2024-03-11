@@ -21,7 +21,10 @@ namespace CodeBase.Infrastructure.Providers
             if (_viewModels.TryGetValue(typeof(TValue), out IViewModel value))
                 return value as TValue;
             else
+            {
+                Debug.LogError( $"Failed! {typeof(TValue).Name} isn't resolve!");
                 return null;
+            }
         }
 
         public void Set<TValue>() where TValue : class, IViewModel

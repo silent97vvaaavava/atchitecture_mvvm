@@ -14,6 +14,9 @@ namespace CodeBase.Presentation.ViewModels
         public BaseViewModel(IWindowFsm windowFsm)
         {
             _windowFsm = windowFsm;
+
+            _windowFsm.Opened += HandleOpenedWindow;
+            _windowFsm.Closed += HandleClosedWindow;
         }
         
         public abstract void InvokeOpen();

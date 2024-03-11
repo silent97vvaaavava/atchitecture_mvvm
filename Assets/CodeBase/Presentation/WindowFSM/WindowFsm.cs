@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CodeBase.Presentation.Views;
+using UnityEngine;
 
 namespace CodeBase.Presentation
 {
@@ -19,6 +20,7 @@ namespace CodeBase.Presentation
 
         protected WindowFsm()
         {
+            _windows = new Dictionary<Type, IWindow>();
             _stack = new Stack<IWindow>();
         }
 
@@ -36,7 +38,7 @@ namespace CodeBase.Presentation
         {
             if(_currentWindow == _windows[window])
                 return;
-            
+            Debug.Log($"Open {window.Name}");
             _currentWindow?.Close();
             _stack.Push(_windows[window]);
             _currentWindow = _stack.Peek();
