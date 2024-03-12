@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace CodeBase.Presentation.Views
 {
-    public class LoadingCurtainView : MonoBehaviour, ILoadingCurtain
+    public class CurtainView : MonoBehaviour, ILoadingCurtain
     {
         [SerializeField] private float _durationCurtain;
         [SerializeField] private TMP_Text _loadingText;

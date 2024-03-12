@@ -12,18 +12,20 @@ namespace CodeBase.Installers
 {
     public class RootInstaller : MonoInstaller
     {
-        [SerializeField] private LoadingCurtainView _curtain;
+        [SerializeField] private CurtainView _curtain;
 
         public override void InstallBindings()
         {
-            LoadingCurtainView curtainView = Container
-                .InstantiatePrefabForComponent<LoadingCurtainView>(_curtain);
+            CurtainView curtainView = Container
+                .InstantiatePrefabForComponent<CurtainView>(_curtain);
             
             Container
                 .BindInterfacesAndSelfTo<InternetReachability>()
                 .FromNew()
                 .AsSingle()
                 .NonLazy();
+
+            BindingService();
             
             // Factory 
             BindingFactory();
@@ -35,7 +37,7 @@ namespace CodeBase.Installers
             BindingWindowFsm();
             
             Container
-                .BindInterfacesAndSelfTo<LoadingCurtainView>()
+                .BindInterfacesAndSelfTo<CurtainView>()
                 .FromInstance(curtainView)
                 .AsSingle()
                 .NonLazy();
@@ -49,6 +51,14 @@ namespace CodeBase.Installers
             Container
                 .BindInterfacesAndSelfTo<GameFsm>()
                 .FromNew()
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindingService()
+        {
+            Container
+                .BindInterfacesAndSelfTo<SceneService>()
                 .AsSingle()
                 .NonLazy();
         }
@@ -73,6 +83,11 @@ namespace CodeBase.Installers
 
         private void BindingFactory()
         {
+            Container
+                .BindInterfacesAndSelfTo<StatesFactory>()
+                .AsSingle()
+                .NonLazy();
+            
             Container
                 .BindInterfacesAndSelfTo<ViewModelFactory>()
                 .FromNew()

@@ -2,6 +2,7 @@ using CodeBase.Infrastructure.Providers;
 using CodeBase.Presentation.ViewModels;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace CodeBase.Presentation.Views
 {
@@ -9,11 +10,14 @@ namespace CodeBase.Presentation.Views
     {
         [SerializeField] private Button _nextButton;
 
+        [Inject]
         protected override void Construct(ViewModelProvider provider)
         {
             base.Construct(provider);
             
-            _nextButton.onClick.AddListener(_viewModel.InvokeOpen);
+            _nextButton
+                .onClick
+                .AddListener(_viewModel.InvokeOpen);
         }
     }
 }

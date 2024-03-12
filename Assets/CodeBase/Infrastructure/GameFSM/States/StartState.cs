@@ -2,9 +2,9 @@
 
 namespace CodeBase.Infrastructure
 {
-    public class InitializeState : BaseState
+    public class StartState : BaseState
     {
-        public InitializeState(
+        public StartState(
             IGameFsm gameFsm
             ) : base(gameFsm)
         {
@@ -17,7 +17,7 @@ namespace CodeBase.Infrastructure
 
         public override void Exit()
         {
-            GameFsm?.Enter<LoaderState>();
+            // GameFsm?.Enter<LoaderState>();
         }
     }
 }

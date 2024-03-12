@@ -1,19 +1,21 @@
-using CodeBase.Infrastructure;
+using CodeBase.Presentation.Models;
+using UnityEngine;
 
 namespace CodeBase.Presentation.ViewModels
 {
     public class StartViewModel : BaseViewModel
     {
-        private readonly IGameFsm _gameFsm;
-
-        public StartViewModel(IWindowFsm windowFsm, IGameFsm gameFsm) : base(windowFsm)
+        private readonly StartModel _model;
+        
+        public StartViewModel(IWindowFsm windowFsm, StartModel model) : base(windowFsm)
         {
-            _gameFsm = gameFsm;
+            _model = model;
         }
 
         public override void InvokeOpen()
         {
-            _gameFsm.Enter<LoaderState>();
+            Debug.Log("Invoke to next");
+            _model.OnNextState();
         }
 
         public override void InvokeClose()

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using CodeBase.Infrastructure;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,13 +9,10 @@ namespace CodeBase.Services
 {
     public class SceneService
     {
-        private ILoadingCurtain _curtain;
-
         private CancellationTokenSource _cts;
 
-        public SceneService(ILoadingCurtain curtain)
+        public SceneService()
         {
-            _curtain = curtain;
         }
 
         public async UniTask OnLoadSceneAsync(string sceneName)
@@ -141,7 +137,6 @@ namespace CodeBase.Services
         {
             float percentage = progress * 100;
             int percentageInt = (int)Math.Round(percentage, 0);
-            _curtain.UpdateProgress(percentageInt);
         }
     }
 }

@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using CodeBase.Helpers;
+using CodeBase.Infrastructure.Factories;
 using CodeBase.Services;
+using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Infrastructure
 {
     public class GameFsm : IGameFsm, IInitializable
     {
+        private readonly StatesFactory _factory;
         private readonly Dictionary<Type, IExitableState> _states;
         private IExitableState _activeState;
         
-        public GameFsm()
+        public GameFsm(StatesFactory factory)
         {
-            _states = new Dictionary<Type, IExitableState>()
-            {
-                [typeof(InitializeState)] = new InitializeState(this),
-                [typeof(LoaderState)] = new LoaderState(this),
-                [typeof(GameplayState)] = new GameplayState(this),
-                [typeof(PauseState)] = new PauseState(this)
-            };
+            _factory = factory;
+            _states = new Dictionary<Type, IExitableState>();
         }
         
         public void Enter<TState>() 
@@ -44,7 +42,12 @@ namespace CodeBase.Infrastructure
 
         public void Initialize()
         {
-            Enter<InitializeState>();
+            _states.TryAdd(typeof(StartState), _factory.Create<StartState>());
+            _states.TryAdd(typeof(LoaderState), _factory.Create<LoaderState>());
+            _states.TryAdd(typeof(GameplayState), _factory.Create<GameplayState>());
+            _states.TryAdd(typeof(PauseState), _factory.Create<PauseState>());
+            Debug.Log(_states.Count);
+            Enter<StartState>();
         }
     }
 }

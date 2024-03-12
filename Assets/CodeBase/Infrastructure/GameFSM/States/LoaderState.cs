@@ -12,11 +12,13 @@ namespace CodeBase.Infrastructure
 
         public override async void Enter()
         {
+            Debug.Log("Enter Loader");
+            GameFsm?.Enter<GameplayState>();
         }
 
         public override void Exit()
         {
-            GameFsm.Enter<GameplayState>();
+            Debug.Log("Exit Loader");
         }
     }
 }

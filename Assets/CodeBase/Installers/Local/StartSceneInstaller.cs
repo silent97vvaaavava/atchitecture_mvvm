@@ -1,6 +1,7 @@
 using CodeBase.Infrastructure.Factories;
 using CodeBase.Infrastructure.Providers;
 using CodeBase.Presentation;
+using CodeBase.Presentation.Models;
 using CodeBase.Presentation.ViewModels;
 using CodeBase.Presentation.Views;
 using Zenject;
@@ -14,6 +15,11 @@ namespace CodeBase.Installers.Local
         
         public override void InstallBindings()
         {
+            Container
+                .BindInterfacesAndSelfTo<StartModel>()
+                .AsSingle()
+                .NonLazy();
+            
             BindingWindowFsm();
             BindingProviders();
         }
@@ -23,8 +29,9 @@ namespace CodeBase.Installers.Local
             var local = Container
                 .Instantiate<WindowFsm>();
 
+            local.Set<StartView>();
             local.Set<SettingsView>();
-            
+
             Container
                 .BindInterfacesAndSelfTo<WindowFsm>()
                 .FromInstance(local)
@@ -52,6 +59,7 @@ namespace CodeBase.Installers.Local
                 .AsSingle()
                 .NonLazy();
 
+            provider.Set<StartViewModel>();
             provider.Set<SettingsViewModel>();
         }
     }
