@@ -26,6 +26,12 @@ namespace CodeBase.Infrastructure
             IState state = ChangeState<TState>();
             state?.Enter();
         }
+        
+        public void Enter(Type type) 
+        {
+            IState state = _states[type] as IState;
+            state?.Enter();
+        }
 
         private TState ChangeState<TState>()
             where TState : class, IExitableState

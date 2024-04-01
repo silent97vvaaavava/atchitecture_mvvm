@@ -12,6 +12,12 @@ namespace CodeBase.Presentation.ViewModels
             _model = model;
         }
 
+        public void InvokeOpen(int scene)
+        {
+            Debug.Log("Invoke to next");
+            _model.OnNextState();
+        }
+        
         public override void InvokeOpen()
         {
             Debug.Log("Invoke to next");
