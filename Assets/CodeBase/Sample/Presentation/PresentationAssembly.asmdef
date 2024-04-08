@@ -1,0 +1,21 @@
+{
+    "name": "PresentationAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:ea6a6314f279f814facc8c48a7d3c9f1",
+        "GUID:7313a18fb84a8c641b92739504f7fd1b",
+        "GUID:b54ce24466b7de840bb614d0bfeafb82"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

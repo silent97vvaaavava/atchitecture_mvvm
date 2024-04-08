@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3708708, g: 0.37838137, b: 0.35725543, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -451,6 +451,18 @@ PrefabInstance:
     - target: {fileID: 3540929086236144771, guid: 1863b6772ccb44974aeca4f809689f36, type: 3}
       propertyPath: m_Name
       value: Start Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008490907730790483, guid: 1863b6772ccb44974aeca4f809689f36, type: 3}
+      propertyPath: _scene
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008490907730790483, guid: 1863b6772ccb44974aeca4f809689f36, type: 3}
+      propertyPath: _state.GUID
+      value: d02fd113302546fcb89feff74bcd04a1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008490907730790483, guid: 1863b6772ccb44974aeca4f809689f36, type: 3}
+      propertyPath: _state._typeNameAndAssembly
+      value: CodeBase.Sample.Infrastructure.GameFsm.States.GameplayState, Sample
       objectReference: {fileID: 0}
     - target: {fileID: 8820782105322575221, guid: 1863b6772ccb44974aeca4f809689f36, type: 3}
       propertyPath: m_Camera
