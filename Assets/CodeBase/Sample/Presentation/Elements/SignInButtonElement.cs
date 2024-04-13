@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CodeBase.Sample.Presentation.Elements
+namespace Sample.Presentation.Elements
 {
     [RequireComponent(typeof(Button))]
     public class SignInButtonElement : MonoBehaviour

@@ -1,6 +1,6 @@
-using CodeBase.Core.MVVM.WindowFsm;
+using Core.MVVM.WindowFsm;
 
-namespace CodeBase.Core.Domain.Providers
+namespace Core.Domain.Providers
 {
     public interface IWindowFsmProvider
     {

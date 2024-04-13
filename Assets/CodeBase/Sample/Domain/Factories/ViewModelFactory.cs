@@ -1,8 +1,8 @@
-﻿using CodeBase.Core.Domain.Factories;
-using CodeBase.Core.MVVM.ViewModel;
+﻿using Core.Domain.Factories;
+using Core.MVVM.ViewModel;
 using Zenject;
 
-namespace CodeBase.Sample.Domain.Factories
+namespace Sample.Domain.Factories
 {
     public class ViewModelFactory : IViewModelFactory
     {

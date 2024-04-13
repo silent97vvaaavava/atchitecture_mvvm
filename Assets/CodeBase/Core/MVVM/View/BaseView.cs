@@ -1,10 +1,10 @@
 ﻿using System;
-using CodeBase.Core.Domain.Providers;
-using CodeBase.Core.MVVM.ViewModel;
+using Core.Domain.Providers;
+using Core.MVVM.ViewModel;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace CodeBase.Core.MVVM.View
+namespace Core.MVVM.View
 {
     [RequireComponent(typeof(Canvas), typeof(CanvasGroup))]
     public abstract class BaseView<TViewModel> : MonoBehaviour, IView

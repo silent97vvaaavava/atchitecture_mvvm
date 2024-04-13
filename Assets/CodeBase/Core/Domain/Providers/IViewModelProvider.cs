@@ -1,6 +1,6 @@
-﻿using CodeBase.Core.MVVM.ViewModel;
+﻿using Core.MVVM.ViewModel;
 
-namespace CodeBase.Core.Domain.Providers
+namespace Core.Domain.Providers
 {
     public interface IViewModelProvider : 
         IProviderGet<IViewModel>, 

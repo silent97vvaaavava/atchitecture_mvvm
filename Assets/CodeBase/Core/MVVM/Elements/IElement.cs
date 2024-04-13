@@ -1,6 +1,6 @@
-using CodeBase.Core.Data.Dto;
+using Core.Data.Dto;
 
-namespace CodeBase.Core.MVVM.Elements
+namespace Core.MVVM.Elements
 {
     public interface IElement<in TValue>
     where TValue : class, IDto

@@ -1,4 +1,4 @@
-﻿namespace CodeBase.Core.Domain.Providers
+﻿namespace Core.Domain.Providers
 {
     public interface IConfigProvider<in TConfig> : IProviderGet<TConfig>
     {

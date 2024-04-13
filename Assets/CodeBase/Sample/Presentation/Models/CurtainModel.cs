@@ -1,4 +1,4 @@
-namespace CodeBase.Sample.Presentation.Models
+namespace Sample.Presentation.Models
 {
     public class CurtainModel
     {

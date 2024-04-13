@@ -1,9 +1,9 @@
-﻿using CodeBase.Core.MVVM.View;
-using CodeBase.Sample.Presentation.ViewModels;
+﻿using Core.MVVM.View;
+using Sample.Presentation.ViewModels;
 using TMPro;
 using UnityEngine;
 
-namespace CodeBase.Sample.Presentation.Views
+namespace Sample.Presentation.Views
 {
     public class CurtainView : BaseView<CurtainViewModel>
     {

@@ -1,4 +1,4 @@
-﻿namespace CodeBase.Core.Data.Dto
+﻿namespace Core.Data.Dto
 {
     public interface IDto
     {

@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace CodeBase.Sample.Services.Scene
+namespace Sample.Services.Scene
 {
     public class SceneService
     {

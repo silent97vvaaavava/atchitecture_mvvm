@@ -1,14 +1,14 @@
-using CodeBase.Core.Domain.Providers;
-using CodeBase.Core.Infrastructure.GameFSM;
-using CodeBase.Core.MVVM.View;
-using CodeBase.Core.MVVM.ViewModel;
-using CodeBase.Sample.Presentation.ViewModels;
+using Core.Domain.Providers;
+using Core.Infrastructure.GameFsm;
+using Core.MVVM.View;
+using Core.MVVM.ViewModel;
+using Sample.Presentation.ViewModels;
 using TypeReferences;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace CodeBase.Sample.Presentation.Views
+namespace Sample.Presentation.Views
 {
     public class StartView : BaseView<StartViewModel>
     {

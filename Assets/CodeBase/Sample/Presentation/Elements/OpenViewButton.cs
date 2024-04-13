@@ -1,12 +1,12 @@
-using CodeBase.Core.Domain.Providers;
-using CodeBase.Core.MVVM.View;
-using CodeBase.Core.MVVM.WindowFsm;
+using Core.Domain.Providers;
+using Core.MVVM.View;
+using Core.MVVM.WindowFsm;
 using TypeReferences;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace CodeBase.Sample.Presentation.Elements
+namespace Sample.Presentation.Elements
 {
     [RequireComponent(typeof(Button))]
     public class OpenViewButton : MonoBehaviour

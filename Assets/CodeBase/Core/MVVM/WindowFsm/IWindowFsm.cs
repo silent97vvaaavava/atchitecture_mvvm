@@ -1,6 +1,6 @@
 using System;
 
-namespace CodeBase.Core.MVVM.WindowFsm
+namespace Core.MVVM.WindowFsm
 {
     public interface IWindowFsm
     {

@@ -1,12 +1,12 @@
-using CodeBase.Sample.Domain.Factories;
-using CodeBase.Sample.Domain.Providers;
-using CodeBase.Sample.Presentation.Models;
-using CodeBase.Sample.Presentation.ViewModels;
-using CodeBase.Sample.Presentation.Views;
-using CodeBase.Sample.Presentation.WindowFSM;
+using Sample.Domain.Factories;
+using Sample.Domain.Providers;
+using Sample.Presentation.Models;
+using Sample.Presentation.ViewModels;
+using Sample.Presentation.Views;
+using Sample.Presentation.WindowFSM;
 using Zenject;
 
-namespace CodeBase.Sample.Installers.Local
+namespace Sample.Installers.Local
 {
     public class StartSceneInstaller : MonoInstaller
     {

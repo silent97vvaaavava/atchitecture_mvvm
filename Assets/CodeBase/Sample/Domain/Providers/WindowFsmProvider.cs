@@ -1,7 +1,7 @@
-using CodeBase.Core.Domain.Providers;
-using CodeBase.Core.MVVM.WindowFsm;
+using Core.Domain.Providers;
+using Core.MVVM.WindowFsm;
 
-namespace CodeBase.Sample.Domain.Providers
+namespace Sample.Domain.Providers
 {
     public class WindowFsmProvider : IWindowFsmProvider
     {

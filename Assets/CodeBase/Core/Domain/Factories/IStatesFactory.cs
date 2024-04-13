@@ -1,6 +1,6 @@
-using CodeBase.Core.Infrastructure.GameFSM.States;
+using Core.Infrastructure.GameFsm.States;
 
-namespace CodeBase.Core.Domain.Factories
+namespace Core.Domain.Factories
 {
     public interface IStatesFactory
     {

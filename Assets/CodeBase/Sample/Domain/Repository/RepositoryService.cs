@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeBase.Core.Data.Dto;
-using CodeBase.Sample.Data.Dto;
+using Core.Data.Dto;
+using Sample.Data.Dto;
 
-namespace CodeBase.Sample.Domain.Repository
+namespace Sample.Domain.Repository
 {
     public class RepositoryService
     {

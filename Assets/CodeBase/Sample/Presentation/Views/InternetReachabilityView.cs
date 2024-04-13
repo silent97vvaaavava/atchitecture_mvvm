@@ -1,11 +1,11 @@
-﻿using CodeBase.Sample.Presentation.Models;
+﻿using Sample.Presentation.Models;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace CodeBase.Sample.Presentation.Views
+namespace Sample.Presentation.Views
 {
     public class InternetReachabilityView : MonoBehaviour
     {

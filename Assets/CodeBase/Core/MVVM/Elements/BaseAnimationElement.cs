@@ -2,7 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 
-namespace CodeBase.Core.MVVM.Elements
+namespace Core.MVVM.Elements
 {
     public abstract class BaseAnimationElement : MonoBehaviour, IAnimationElement
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeBase.Core.Domain.Factories;
-using CodeBase.Core.Infrastructure.GameFSM.States;
+using Core.Domain.Factories;
+using Core.Infrastructure.GameFsm.States;
 
-namespace CodeBase.Core.Infrastructure.GameFSM
+namespace Core.Infrastructure.GameFsm
 {
     public abstract class BaseGameFsm : IGameFsm
     {

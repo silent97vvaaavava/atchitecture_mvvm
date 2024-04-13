@@ -1,6 +1,6 @@
-using CodeBase.Core.MVVM.View;
+using Core.MVVM.View;
 
-namespace CodeBase.Core.MVVM.WindowFsm
+namespace Core.MVVM.WindowFsm
 {
     public interface IWindowResolve
     {

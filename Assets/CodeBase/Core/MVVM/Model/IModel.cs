@@ -1,4 +1,4 @@
-namespace CodeBase.Core.MVVM.Model
+namespace Core.MVVM.Model
 {
     public interface IModel
     {

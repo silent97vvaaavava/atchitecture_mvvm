@@ -1,7 +1,7 @@
 using System;
-using CodeBase.Core.MVVM.WindowFsm;
+using Core.MVVM.WindowFsm;
 
-namespace CodeBase.Sample.Presentation.WindowFSM.Windows
+namespace Sample.Presentation.WindowFSM.Windows
 {
     public sealed class Window : IWindow
     {

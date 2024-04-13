@@ -1,7 +1,7 @@
 ﻿using System;
-using CodeBase.Core.Infrastructure.GameFSM.States;
+using Core.Infrastructure.GameFsm.States;
 
-namespace CodeBase.Core.Infrastructure.GameFSM
+namespace Core.Infrastructure.GameFsm
 {
     public interface IGameFsm
     {

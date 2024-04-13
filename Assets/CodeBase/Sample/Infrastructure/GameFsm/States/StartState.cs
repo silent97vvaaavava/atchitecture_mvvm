@@ -1,11 +1,12 @@
-﻿using CodeBase.Core.Infrastructure.GameFSM;
-using CodeBase.Core.Infrastructure.GameFSM.States;
-using CodeBase.Sample.Services.Scene;
+﻿using System.Collections;
+using Core.Infrastructure.GameFsm;
+using Core.Infrastructure.GameFsm.States;
+using Sample.Services.Scene;
 using UnityEngine;
 
-namespace CodeBase.Sample.Infrastructure.GameFsm.States
+namespace Sample.Infrastructure.GameFsm.States
 {
-    public class StartState : BaseState
+    public class StartState : AbstractState
     {
         private readonly SceneService _sceneService;
 
@@ -24,6 +25,11 @@ namespace CodeBase.Sample.Infrastructure.GameFsm.States
                 Debug.Log("Open Scene");
             }
             Debug.Log("first state");
+        }
+
+        public override IEnumerator Execute()
+        {
+            yield return null;
         }
 
         public override void Exit()

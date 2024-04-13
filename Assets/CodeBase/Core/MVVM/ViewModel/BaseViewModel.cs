@@ -1,7 +1,7 @@
 ﻿using System;
-using CodeBase.Core.MVVM.WindowFsm;
+using Core.MVVM.WindowFsm;
 
-namespace CodeBase.Core.MVVM.ViewModel
+namespace Core.MVVM.ViewModel
 {
     public abstract class BaseViewModel : IViewModel
     {

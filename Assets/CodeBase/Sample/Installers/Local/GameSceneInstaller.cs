@@ -1,7 +1,7 @@
-using CodeBase.Sample.Domain.Providers;
+using Sample.Domain.Providers;
 using Zenject;
 
-namespace CodeBase.Sample.Installers.Local
+namespace Sample.Installers.Local
 {
     public class GameSceneInstaller : MonoInstaller
     {

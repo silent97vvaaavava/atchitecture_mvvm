@@ -1,6 +1,6 @@
-﻿using CodeBase.Core.Data.Dto;
+﻿using Core.Data.Dto;
 
-namespace CodeBase.Sample.Data.Dto
+namespace Sample.Data.Dto
 {
     public class CurrencyDto : IDto
     {

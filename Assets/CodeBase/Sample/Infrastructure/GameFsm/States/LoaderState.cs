@@ -1,10 +1,11 @@
-﻿using CodeBase.Core.Infrastructure.GameFSM;
-using CodeBase.Core.Infrastructure.GameFSM.States;
+﻿using System.Collections;
+using Core.Infrastructure.GameFsm;
+using Core.Infrastructure.GameFsm.States;
 using UnityEngine;
 
-namespace CodeBase.Sample.Infrastructure.GameFsm.States
+namespace Sample.Infrastructure.GameFsm.States
 {
-    public class LoaderState : BaseState
+    public class LoaderState : AbstractState
     {
         public LoaderState(
             IGameFsm gameFsm
@@ -16,6 +17,11 @@ namespace CodeBase.Sample.Infrastructure.GameFsm.States
         {
             Debug.Log("Enter Loader");
             GameFsm?.Enter<GameplayState>();
+        }
+
+        public override IEnumerator Execute()
+        {
+            yield return null;
         }
 
         public override void Exit()

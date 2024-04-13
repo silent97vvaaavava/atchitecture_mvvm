@@ -1,4 +1,4 @@
-﻿namespace CodeBase.Core.MVVM.View
+﻿namespace Core.MVVM.View
 {
     public interface IView
     {

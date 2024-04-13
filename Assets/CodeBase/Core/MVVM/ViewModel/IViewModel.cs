@@ -1,6 +1,6 @@
 using System;
 
-namespace CodeBase.Core.MVVM.ViewModel
+namespace Core.MVVM.ViewModel
 {
     public interface IViewModel
     {

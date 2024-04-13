@@ -1,12 +1,18 @@
-﻿using CodeBase.Core.Infrastructure.GameFSM;
-using CodeBase.Core.Infrastructure.GameFSM.States;
+﻿using System.Collections;
+using Core.Infrastructure.GameFsm;
+using Core.Infrastructure.GameFsm.States;
 
-namespace CodeBase.Sample.Infrastructure.GameFsm.States
+namespace Sample.Infrastructure.GameFsm.States
 {
-    public class PauseState : BaseState
+    public class PauseState : AbstractState
     {
         public PauseState(IGameFsm gameFsm) : base(gameFsm)
         {
+        }
+
+        public override IEnumerator Execute()
+        {
+            yield return null;
         }
     }
 }

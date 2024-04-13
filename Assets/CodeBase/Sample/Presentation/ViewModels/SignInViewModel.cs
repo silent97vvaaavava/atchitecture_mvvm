@@ -1,9 +1,9 @@
 ﻿using System;
-using CodeBase.Core.MVVM.ViewModel;
-using CodeBase.Core.MVVM.WindowFsm;
-using CodeBase.Sample.Presentation.Views;
+using Core.MVVM.ViewModel;
+using Core.MVVM.WindowFsm;
+using Sample.Presentation.Views;
 
-namespace CodeBase.Sample.Presentation.ViewModels
+namespace Sample.Presentation.ViewModels
 {
     public class SignInViewModel : BaseViewModel
     {

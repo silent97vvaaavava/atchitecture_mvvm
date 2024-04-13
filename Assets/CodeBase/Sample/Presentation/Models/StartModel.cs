@@ -1,11 +1,9 @@
 using System;
-using CodeBase.Core.Infrastructure.GameFSM;
-using CodeBase.Core.Infrastructure.GameFSM.States;
-using CodeBase.Sample.Infrastructure.GameFsm.States;
-using CodeBase.Sample.Services.Scene;
-using Cysharp.Threading.Tasks;
+using Core.Infrastructure.GameFsm;
+using Sample.Infrastructure.GameFsm.States;
+using Sample.Services.Scene;
 
-namespace CodeBase.Sample.Presentation.Models
+namespace Sample.Presentation.Models
 {
     public class StartModel // ToDo: Change to Scene Model 
     {

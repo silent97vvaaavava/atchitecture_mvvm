@@ -1,7 +1,7 @@
-﻿using CodeBase.Core.Data.Dto;
+﻿using Core.Data.Dto;
 using UnityEngine.Events;
 
-namespace CodeBase.Sample.Data.Dto
+namespace Sample.Data.Dto
 {
     public class SignInDto : IDto
     {

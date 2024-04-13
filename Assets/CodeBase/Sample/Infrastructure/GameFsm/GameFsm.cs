@@ -1,9 +1,10 @@
-using CodeBase.Core.Domain.Factories;
-using CodeBase.Core.Infrastructure.GameFSM;
-using CodeBase.Sample.Infrastructure.GameFsm.States;
+using Core.Domain.Factories;
+using Core.Infrastructure.GameFsm;
+using Sample.Infrastructure.GameFsm.States;
+using UnityEngine;
 using Zenject;
 
-namespace CodeBase.Sample.Infrastructure.GameFsm
+namespace Sample.Infrastructure.GameFsm
 {
     public class GameFsm : BaseGameFsm, IInitializable
     {
@@ -13,6 +14,7 @@ namespace CodeBase.Sample.Infrastructure.GameFsm
         
         public virtual void Initialize()
         {
+            Debug.Log("Initialize State Machine");
             _states.TryAdd(typeof(StartState), _factory.Create<StartState>());
             _states.TryAdd(typeof(LoaderState), _factory.Create<LoaderState>());
             _states.TryAdd(typeof(GameplayState), _factory.Create<GameplayState>());

@@ -1,4 +1,4 @@
-namespace CodeBase.Core.Data.Configs
+namespace Core.Data.Configs
 {
     public interface IConfig
     {

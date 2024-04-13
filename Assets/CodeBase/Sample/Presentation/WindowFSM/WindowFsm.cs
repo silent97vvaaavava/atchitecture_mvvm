@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using CodeBase.Core.MVVM.View;
-using CodeBase.Core.MVVM.WindowFsm;
-using CodeBase.Sample.Presentation.WindowFSM.Windows;
+using Core.MVVM.View;
+using Core.MVVM.WindowFsm;
+using Sample.Presentation.WindowFSM.Windows;
 using UnityEngine;
 
-namespace CodeBase.Sample.Presentation.WindowFSM
+namespace Sample.Presentation.WindowFSM
 {
     public class WindowFsm : IWindowFsm, IWindowResolve
     {

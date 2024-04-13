@@ -1,6 +1,6 @@
-using CodeBase.Core.MVVM.ViewModel;
+using Core.MVVM.ViewModel;
 
-namespace CodeBase.Core.Domain.Factories
+namespace Core.Domain.Factories
 {
     public interface IViewModelFactory
     {

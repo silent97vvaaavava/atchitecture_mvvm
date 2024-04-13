@@ -1,14 +1,14 @@
-using CodeBase.Sample.Domain.Factories;
-using CodeBase.Sample.Domain.Providers;
-using CodeBase.Sample.Infrastructure.GameFsm;
-using CodeBase.Sample.Presentation.Models;
-using CodeBase.Sample.Presentation.Views;
-using CodeBase.Sample.Presentation.WindowFSM;
-using CodeBase.Sample.Services.Scene;
+using Sample.Domain.Factories;
+using Sample.Domain.Providers;
+using Sample.Infrastructure.GameFsm;
+using Sample.Presentation.Models;
+using Sample.Presentation.Views;
+using Sample.Presentation.WindowFSM;
+using Sample.Services.Scene;
 using UnityEngine;
 using Zenject;
 
-namespace CodeBase.Sample.Installers
+namespace Sample.Installers
 {
     public class RootInstaller : MonoInstaller
     {

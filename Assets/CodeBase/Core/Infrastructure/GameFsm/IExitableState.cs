@@ -1,4 +1,4 @@
-﻿namespace CodeBase.Core.Infrastructure.GameFSM
+﻿namespace Core.Infrastructure.GameFsm
 {
     public interface IExitableState
     {

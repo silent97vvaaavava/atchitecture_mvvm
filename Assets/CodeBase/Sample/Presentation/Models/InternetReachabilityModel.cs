@@ -4,7 +4,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace CodeBase.Sample.Presentation.Models
+namespace Sample.Presentation.Models
 {
     public class InternetReachabilityModel 
     {

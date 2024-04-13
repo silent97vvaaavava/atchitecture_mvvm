@@ -1,6 +1,6 @@
 using System;
 
-namespace CodeBase.Core.MVVM.Elements
+namespace Core.MVVM.Elements
 {
     public interface IAnimationElement
     {

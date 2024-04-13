@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CodeBase.Sample.Presentation.Elements
+namespace Sample.Presentation.Elements
 {
     [RequireComponent(typeof(Toggle))]
     public class ToggleElement : MonoBehaviour
