@@ -1,1 +1,1 @@
-# atchitecture_mvvm
+# Реализация MVVM в Unity
