@@ -1,6 +1,12 @@
 # Реализация MVVM в Unity
 
 ## Core 
+
+### WindowFsm 
+
+WindowFsm является стейт машиной по управлению окон на сцене. В ее работу включенны класс Window и интерфейс IWindow, которые выступают в роли представителей целевых окон. 
+WindowFsm реализует интерфейс IWindowFsm. 
+
 ### Элементы MVVM: Model, ViewModel, View
 
 #### Model 
