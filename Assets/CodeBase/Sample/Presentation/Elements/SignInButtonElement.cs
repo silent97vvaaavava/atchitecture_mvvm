@@ -6,7 +6,6 @@ namespace Sample.Presentation.Elements
 {
     [RequireComponent(typeof(Button))]
     public class SignInButtonElement : MonoBehaviour
-        // , IElement<SignInDto>
     {
         [SerializeField] private TMP_Text _textBtn;
 
@@ -21,11 +20,5 @@ namespace Sample.Presentation.Elements
                 return _button;
             }
         }
-
-        // public void Set(SignInDto value)
-        // {
-        //     _textBtn.SetText(value.Text);
-        //     Button.onClick.AddListener(value.ClickInvoke);
-        // }
     } 
 }
