@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Training.Sctipts
+namespace Training.MVVM.View
 {
     public class SettingsView : MonoBehaviour
     {
@@ -23,7 +22,6 @@ namespace Training.Sctipts
             {
                 bool isOn = PlayerPrefs.GetInt(SOUND) == 1;
                 _soundToggle.isOn = isOn;
-                
             }
             
             if (PlayerPrefs.HasKey(MUSIC))

@@ -20,6 +20,7 @@ namespace Core.Infrastructure.GameFsm.States
 
         public virtual void Enter()
         {
+            
         }
 
         public abstract IEnumerator Execute();

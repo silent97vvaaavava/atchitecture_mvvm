@@ -10,9 +10,9 @@ namespace Core.MVVM.WindowFsm
         Type CurrentWindow { get; }
         bool IsOpenWindow { get; }
         
-        void OpenWindow(Type window);
+        void OpenWindow(Type type);
         void OpenOneWindow(Type window);
-        void CloseWindow(Type window);
+        void CloseWindow(Type type);
         void CloseCurrentWindow();
         void ClearHistory();
     }
