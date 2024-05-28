@@ -73,6 +73,7 @@ private void OnOpened(Type window) => Opened?.Invoke(window);
 #### Window
 Реализует интерфейс _IWindow_, который регламентирует методы открытия закрытия, а так же события открытия/закрытия, который должны быть связаны с _WindowFsm_.
 Является "оберткой" над компонентом _View_ в _MVVM_ и позволяет передать контроль над ним в **_WindowFsm_**.
+
 ---
 ### Элементы MVVM: Model, ViewModel, View
 
