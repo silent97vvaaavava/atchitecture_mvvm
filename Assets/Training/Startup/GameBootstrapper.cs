@@ -12,9 +12,9 @@ namespace Training.Startup
         
         private void Start()
         {
-            (_gameFsm as GameStateMachine)?.RegisterStates();   //TODO Костыль из-за Circular Dependency Exceptions
+            //(_gameFsm as GameStateMachine)?.RegisterStates();   //TODO Костыль из-за Circular Dependency Exceptions
 
-            _gameFsm.Enter<MainMenuScreenState>();
+            _gameFsm.Enter<MainMenuState>();
             DontDestroyOnLoad(this);
         }
     }

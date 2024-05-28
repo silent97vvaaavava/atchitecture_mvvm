@@ -15,14 +15,10 @@ namespace Training.MVVM.WindowFsm
             UIWindow = uiWindow;
         }
 
-        public void Open()
-        {
+        public void Open() => 
             Opened?.Invoke(UIWindow);
-        }
 
-        public void Close()
-        {
+        public void Close() => 
             Closed?.Invoke(UIWindow);
-        }
     }
 }
