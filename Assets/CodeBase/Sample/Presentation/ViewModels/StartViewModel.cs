@@ -1,12 +1,12 @@
 using System;
 using Core.MVVM.ViewModel;
-using Core.MVVM.WindowFsm;
+using Core.MVVM.Windows;
 using Sample.Presentation.Models;
 using UnityEngine;
 
 namespace Sample.Presentation.ViewModels
 {
-    public class StartViewModel : BaseViewModel
+    public class StartViewModel : AbstractViewModel
     {
         private readonly StartModel _model;
         

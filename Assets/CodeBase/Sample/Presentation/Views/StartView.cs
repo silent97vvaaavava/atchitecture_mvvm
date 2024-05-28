@@ -1,5 +1,6 @@
 using Core.Domain.Providers;
 using Core.Infrastructure.GameFsm;
+using Core.Infrastructure.GameFsm.States;
 using Core.MVVM.View;
 using Core.MVVM.ViewModel;
 using Sample.Presentation.ViewModels;
@@ -10,7 +11,7 @@ using Zenject;
 
 namespace Sample.Presentation.Views
 {
-    public class StartView : BaseView<StartViewModel>
+    public class StartView : AbstractPayloadView<StartViewModel>
     {
         [SerializeField]
         [Inherits(typeof(IExitableState))]

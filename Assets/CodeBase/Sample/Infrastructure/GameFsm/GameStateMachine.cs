@@ -6,9 +6,9 @@ using Zenject;
 
 namespace Sample.Infrastructure.GameFsm
 {
-    public class GameFsm : BaseGameFsm, IInitializable
+    public class GameStateMachine : AbstractGameStateMachine, IInitializable
     {
-        public GameFsm(IStatesFactory factory) : base(factory)
+        public GameStateMachine(IStatesFactory factory) : base(factory)
         {
         }
         

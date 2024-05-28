@@ -1,18 +1,22 @@
-﻿using System.Collections;
-using Core.Infrastructure.GameFsm;
+﻿using Core.Infrastructure.GameFsm;
 using Core.Infrastructure.GameFsm.States;
 
 namespace Sample.Infrastructure.GameFsm.States
 {
-    public class PauseState : AbstractState
+    public class PauseState : AbstractState, IState
     {
-        public PauseState(IGameFsm gameFsm) : base(gameFsm)
+        public PauseState(IGameStateMachine gameStateMachine) : base(gameStateMachine)
         {
         }
 
-        public override IEnumerator Execute()
+
+        public override void OnExit()
         {
-            yield return null;
+            
+        }
+
+        public void OnEnter()
+        {
         }
     }
 }

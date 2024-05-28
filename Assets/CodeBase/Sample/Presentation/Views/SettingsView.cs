@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Sample.Presentation.Views
 {
-    public class SettingsView : BaseView<SettingsViewModel>
+    public class SettingsView : AbstractPayloadView<SettingsViewModel>
     {
         [SerializeField] private Button _closeButton;
         

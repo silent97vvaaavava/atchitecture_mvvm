@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Sample.Presentation.Views
 {
-    public class CurtainView : BaseView<CurtainViewModel>
+    public class CurtainView : AbstractPayloadView<CurtainViewModel>
     {
         [SerializeField] private TMP_Text _loadingText;
 

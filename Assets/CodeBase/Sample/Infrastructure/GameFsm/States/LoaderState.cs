@@ -1,30 +1,21 @@
-﻿using System.Collections;
+﻿using System.Threading.Tasks;
 using Core.Infrastructure.GameFsm;
 using Core.Infrastructure.GameFsm.States;
 using UnityEngine;
 
 namespace Sample.Infrastructure.GameFsm.States
 {
-    public class LoaderState : AbstractState
+    public class LoaderState : AbstractState, IAsyncState
     {
-        public LoaderState(
-            IGameFsm gameFsm
-        ) : base(gameFsm)
-        {
-        }
+        public LoaderState(IGameStateMachine gameStateMachine) : base(gameStateMachine) { }
 
-        public override async void Enter()
+        public async Task OnEnterAsync()
         {
             Debug.Log("Enter Loader");
-            GameFsm?.Enter<GameplayState>();
+            GameStateMachine?.Enter<GameplayState>();
         }
 
-        public override IEnumerator Execute()
-        {
-            yield return null;
-        }
-
-        public override void Exit()
+        public override void OnExit()
         {
             Debug.Log("Exit Loader");
         }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Core.Domain.Providers;
 using Core.MVVM.ViewModel;
 using UnityEngine;
@@ -7,17 +7,14 @@ using UnityEngine.Events;
 namespace Core.MVVM.View
 {
     [RequireComponent(typeof(Canvas), typeof(CanvasGroup))]
-    public abstract class BaseView<TViewModel> : MonoBehaviour, IView
-    where TViewModel : class, IViewModel
+    public abstract class AbstractView : MonoBehaviour, IView
     {
         public UnityEvent<Action> OnAnimationShow = new UnityEvent<Action>();
         public UnityEvent<Action> OnAnimationHide = new UnityEvent<Action>();
         
-        protected TViewModel _viewModel;
-        
         private Canvas _canvas;
         private CanvasGroup _canvasGroup;
-
+        
         public virtual Canvas CanvasElement 
         {
             get
@@ -38,14 +35,9 @@ namespace Core.MVVM.View
             }
         }
 
-        protected virtual void Construct(IProviderGet<IViewModel> provider)
-        {
-            _viewModel = provider.Get<TViewModel>();
-
-            _viewModel.InvokedOpen += Show;
-            _viewModel.InvokedClose += Hide;
-        }
-
+        protected abstract void Construct(IProviderGet<IViewModel> provider);
+        
+        
         public virtual void Show()
         {
             if(OnAnimationShow.GetPersistentEventCount() > 0)
@@ -54,7 +46,7 @@ namespace Core.MVVM.View
                 SetActive(true);
         }
 
-        public virtual void Hide()
+        public void Hide()
         {
             if(OnAnimationHide.GetPersistentEventCount() > 0)
                 OnAnimationHide?.Invoke(() =>  SetActive(false));
@@ -64,7 +56,6 @@ namespace Core.MVVM.View
         
         private void SetActive(bool isActive)
         {
-            Debug.Log($"active: {isActive}");
             CanvasGroupElement.alpha = isActive ? 1 : 0;
             CanvasElement.enabled = isActive;
             CanvasGroupElement.blocksRaycasts = isActive;

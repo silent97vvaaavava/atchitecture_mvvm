@@ -1,11 +1,11 @@
 ﻿using System;
 using Core.MVVM.ViewModel;
-using Core.MVVM.WindowFsm;
+using Core.MVVM.Windows;
 using Sample.Presentation.Views;
 
 namespace Sample.Presentation.ViewModels
 {
-    public class SignInViewModel : BaseViewModel
+    public class SignInViewModel : AbstractViewModel
     {
         public event Action InvokedOpen;
         public event Action InvokedClose;

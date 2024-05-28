@@ -1,22 +1,21 @@
-﻿using System.Collections;
-using Core.Infrastructure.GameFsm;
+﻿using Core.Infrastructure.GameFsm;
 using Core.Infrastructure.GameFsm.States;
 using Sample.Services.Scene;
 using UnityEngine;
 
 namespace Sample.Infrastructure.GameFsm.States
 {
-    public class StartState : AbstractState
+    public class StartState : AbstractState, IState
     {
         private readonly SceneService _sceneService;
 
         public StartState(
-            IGameFsm gameFsm, SceneService sceneService) : base(gameFsm)
+            IGameStateMachine gameStateMachine, SceneService sceneService) : base(gameStateMachine)
         {
             _sceneService = sceneService;
         }
         
-        public override void Enter()
+        public void OnEnter()
         {
             if (!_sceneService.IsCurrentScene(0))
             {
@@ -27,12 +26,7 @@ namespace Sample.Infrastructure.GameFsm.States
             Debug.Log("first state");
         }
 
-        public override IEnumerator Execute()
-        {
-            yield return null;
-        }
-
-        public override void Exit()
+        public override void OnExit()
         {
             // GameFsm?.Enter<LoaderState>();
         }

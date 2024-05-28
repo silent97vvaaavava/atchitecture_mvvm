@@ -7,12 +7,12 @@ namespace Sample.Presentation.Models
 {
     public class StartModel // ToDo: Change to Scene Model 
     {
-        private readonly IGameFsm _gameFsm; 
+        private readonly IGameStateMachine _gameStateMachine; 
         private readonly SceneService _sceneService;
         
-        public StartModel(IGameFsm gameFsm, SceneService sceneService)
+        public StartModel(IGameStateMachine gameStateMachine, SceneService sceneService)
         {
-            _gameFsm = gameFsm;
+            _gameStateMachine = gameStateMachine;
             _sceneService = sceneService;
         }
 
@@ -20,7 +20,7 @@ namespace Sample.Presentation.Models
         {
             // _sceneService
             //     .OnLoadSceneAsync(1);
-            _gameFsm.Enter<LoaderState>();
+            _gameStateMachine.EnterAsync<LoaderState>();
         }
         
         public void OnNextState(int scene)
@@ -28,12 +28,12 @@ namespace Sample.Presentation.Models
             // _sceneService
             //     .OnLoadSceneAsync(scene);
             
-            _gameFsm.Enter<LoaderState>();
+            _gameStateMachine.EnterAsync<LoaderState>();
         }
         
         public void OnNextState(Type state)
         {
-            _gameFsm.Enter(state);
+            _gameStateMachine.Enter(state);
         }
     }
 }

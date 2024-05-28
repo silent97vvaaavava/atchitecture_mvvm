@@ -1,5 +1,5 @@
 using Core.Domain.Providers;
-using Core.MVVM.WindowFsm;
+using Core.MVVM.Windows;
 
 namespace Sample.Domain.Providers
 {

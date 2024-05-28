@@ -1,12 +1,12 @@
 using System;
 using Core.MVVM.ViewModel;
-using Core.MVVM.WindowFsm;
+using Core.MVVM.Windows;
 using Sample.Presentation.Views;
 using UnityEngine;
 
 namespace Sample.Presentation.ViewModels
 {
-    public class SettingsViewModel : BaseViewModel
+    public class SettingsViewModel : AbstractViewModel
     {
         protected override Type Window => typeof(SettingsView);
 
@@ -23,7 +23,7 @@ namespace Sample.Presentation.ViewModels
         public override void InvokeClose()
         {
             Debug.Log("Close");
-            _windowFsm.CloseCurrentWindow();
+            _windowFsm.CloseWindow();
         }
     }
 }

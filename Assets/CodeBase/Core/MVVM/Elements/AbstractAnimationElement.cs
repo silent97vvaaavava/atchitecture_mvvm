@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Core.MVVM.Elements
 {
-    public abstract class BaseAnimationElement : MonoBehaviour, IAnimationElement
+    public abstract class AbstractAnimationElement : MonoBehaviour, IAnimationElement
     {
         [SerializeField] protected float _delay;
         [SerializeField] protected float _durration;

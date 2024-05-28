@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Sample.Presentation.Views
 {
-    public class SignInView : BaseView<SignInViewModel>
+    public class SignInView : AbstractPayloadView<SignInViewModel>
     {
         [SerializeField] private Transform _container;
         

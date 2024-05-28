@@ -1,9 +1,9 @@
+using Core.MVVM.Windows;
 using Sample.Domain.Factories;
 using Sample.Domain.Providers;
 using Sample.Presentation.Models;
 using Sample.Presentation.ViewModels;
 using Sample.Presentation.Views;
-using Sample.Presentation.WindowFSM;
 using Zenject;
 
 namespace Sample.Installers.Local

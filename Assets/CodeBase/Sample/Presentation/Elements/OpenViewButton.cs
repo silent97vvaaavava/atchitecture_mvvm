@@ -1,6 +1,6 @@
 using Core.Domain.Providers;
 using Core.MVVM.View;
-using Core.MVVM.WindowFsm;
+using Core.MVVM.Windows;
 using TypeReferences;
 using UnityEngine;
 using UnityEngine.UI;
@@ -41,7 +41,7 @@ namespace Sample.Presentation.Elements
 
         private void OnClick()
         {
-            _windowFsm.OpenWindow(_window.Type);
+            _windowFsm.OpenWindow(_window.Type, true);
         }
     }
 }

@@ -1,9 +1,9 @@
+using Core.MVVM.Windows;
 using Sample.Domain.Factories;
 using Sample.Domain.Providers;
 using Sample.Infrastructure.GameFsm;
 using Sample.Presentation.Models;
 using Sample.Presentation.Views;
-using Sample.Presentation.WindowFSM;
 using Sample.Services.Scene;
 using UnityEngine;
 using Zenject;
@@ -43,7 +43,7 @@ namespace Sample.Installers
                 .NonLazy();
 
             Container
-                .BindInterfacesAndSelfTo<GameFsm>()
+                .BindInterfacesAndSelfTo<GameStateMachine>()
                 .FromNew()
                 .AsSingle()
                 .NonLazy();

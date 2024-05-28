@@ -1,12 +1,12 @@
 using System;
 using Core.MVVM.ViewModel;
-using Core.MVVM.WindowFsm;
+using Core.MVVM.Windows;
 using Sample.Presentation.Models;
 using Sample.Presentation.Views;
 
 namespace Sample.Presentation.ViewModels
 {
-    public class CurtainViewModel : BaseViewModel
+    public class CurtainViewModel : AbstractViewModel
     {
         private readonly CurtainModel _model;
         
