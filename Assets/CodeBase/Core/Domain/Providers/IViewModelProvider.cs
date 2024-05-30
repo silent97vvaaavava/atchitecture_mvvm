@@ -4,7 +4,8 @@ namespace Core.Domain.Providers
 {
     public interface IViewModelProvider : 
         IProviderGet<IViewModel>, 
-        IProviderSet<IViewModel> 
+        IProviderSet<IViewModel>
     {
+        void CleanUp();
     }
 }

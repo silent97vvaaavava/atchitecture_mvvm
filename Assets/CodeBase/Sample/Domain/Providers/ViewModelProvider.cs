@@ -33,5 +33,10 @@ namespace Sample.Domain.Providers
             TValue value = _factory.Create<TValue>();
             Debug.Log(_viewModels.TryAdd(typeof(TValue), value) ? "Success add" : "Failed add");
         }
+
+        public void CleanUp()
+        {
+            
+        }
     }
 }
