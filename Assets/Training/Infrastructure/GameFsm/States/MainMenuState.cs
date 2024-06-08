@@ -1,10 +1,7 @@
 using System.Collections;
-using Core.Domain.Providers;
 using Core.Infrastructure.GameFsm;
 using Core.Infrastructure.GameFsm.States;
-using Training.MVVM.ViewModel;
 using Training.Services;
-using Training.Startup;
 using UnityEngine;
 
 namespace Training.Infrastructure.GameFsm.States

@@ -23,20 +23,19 @@ namespace Training.MVVM.View
         {
             base.Construct(provider);
             
-            Debug.Log("ПОДПИСАЛИ МЕТОД НА КНОПКУ");
+            Debug.Log("ПОДПИСАЛИ МЕТОД НА КНОПКУ, кнопка - " + _playButton + "StateToGo - " + _stateToGo);
             _playButton.onClick.AddListener(OnPlayButtonClicked);
             _settingsButton.onClick.AddListener(OnSettingsButtonClicked);
         }
 
         private void OnPlayButtonClicked()
         {
-            Debug.Log("НАЖАЛИ НА КНОПКУ, ААААААААА");
             _viewModel.InvokeOpen(_stateToGo.Type);
         }
 
         private void OnSettingsButtonClicked()
         {
-            //TODO Команда модели открыть настроечкм
+            //TODO Команда view-model открыть настроечкм
         }
     }
 }
