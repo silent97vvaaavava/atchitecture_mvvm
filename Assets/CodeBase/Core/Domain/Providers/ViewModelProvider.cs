@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Core.Domain.Factories;
-using Core.Domain.Providers;
 using Core.MVVM.ViewModel;
 using UnityEngine;
 
-namespace Sample.Domain.Providers
+namespace Core.Domain.Providers
 {
     public class ViewModelProvider : IViewModelProvider 
     {

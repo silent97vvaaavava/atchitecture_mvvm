@@ -1,3 +1,4 @@
+using Core.Domain.Providers;
 using Core.MVVM.Windows;
 using Sample.Domain.Factories;
 using Sample.Domain.Providers;
