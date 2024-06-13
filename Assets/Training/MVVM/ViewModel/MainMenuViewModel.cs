@@ -23,6 +23,7 @@ namespace Training.MVVM.ViewModel
 
         public override void InvokeOpen()
         {
+            
         }
 
         public override void InvokeClose()

@@ -22,8 +22,6 @@ namespace Training.MVVM.View
         protected override void Construct(IProviderGet<IViewModel> provider)
         {
             base.Construct(provider);
-            
-            Debug.Log("ПОДПИСАЛИ МЕТОД НА КНОПКУ, кнопка - " + _playButton + "StateToGo - " + _stateToGo);
             _playButton.onClick.AddListener(OnPlayButtonClicked);
             _settingsButton.onClick.AddListener(OnSettingsButtonClicked);
         }

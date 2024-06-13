@@ -19,7 +19,7 @@ namespace Training.Infrastructure.GameFsm.States
         
         public override async void Enter()
         {
-            base.Enter();
+            base.Enter();   
             Debug.Log("Entering MainMenuState");
             await _sceneLoader.OnLoadSceneAsync(0);
         }

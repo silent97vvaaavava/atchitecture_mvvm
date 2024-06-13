@@ -19,8 +19,8 @@ namespace Training.Infrastructure.GameFsm.States
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("Enter Game");
-            _sceneService.OnLoadSceneAsync("GameplayScene").Forget();
+            Debug.Log("Enter GameState");
+            _sceneService.OnLoadSceneAsync(1).Forget();
         }
 
         public override IEnumerator Execute()

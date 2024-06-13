@@ -21,9 +21,7 @@ namespace Training.MVVM.View
         protected override void Construct(IProviderGet<IViewModel> provider)
         {
             base.Construct(provider);
-            _backButton
-                .onClick
-                .AddListener(OnBackButtonClicked);
+            _backButton.onClick.AddListener(OnBackButtonClicked);
         }
 
         private void OnBackButtonClicked()

@@ -15,14 +15,19 @@ namespace Training.Services
         {
         }
 
-        public bool IsCurrentScene(int scene)
+        private bool IsCurrentScene(int sceneIndex) => 
+            SceneManager.GetActiveScene().buildIndex == sceneIndex;
+
+        private bool IsCurrentScene(string sceneName)
         {
-            Debug.Log(SceneManager.GetActiveScene().buildIndex);
-            return SceneManager.GetActiveScene().buildIndex == scene;
+            Debug.Log(SceneManager.GetActiveScene().name);
+            return SceneManager.GetActiveScene().name == sceneName;
         }
         
         public async UniTask OnLoadSceneAsync(string sceneName)
         {
+            if (IsCurrentScene(sceneName)) return;
+
             if (_cts == null)
             {
                 _cts = new CancellationTokenSource();
@@ -52,6 +57,8 @@ namespace Training.Services
         
         public async UniTask OnLoadSceneAsync(int sceneIndex)
         {
+            if (IsCurrentScene(sceneIndex)) return;
+            
             if (_cts == null)
             {
                 _cts = new CancellationTokenSource();
