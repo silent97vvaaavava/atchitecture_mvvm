@@ -35,9 +35,6 @@ namespace Core.MVVM.View
             }
         }
 
-        protected abstract void Construct(IProviderGet<IViewModel> provider);
-        
-        
         public virtual void Show()
         {
             if(OnAnimationShow.GetPersistentEventCount() > 0)
