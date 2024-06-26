@@ -1,6 +1,4 @@
 using System;
-using Core.Domain.Providers;
-using Core.MVVM.ViewModel;
 using UnityEngine;
 using UnityEngine.Events;
 
