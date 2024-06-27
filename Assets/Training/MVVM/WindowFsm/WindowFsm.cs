@@ -17,7 +17,7 @@ namespace Training.MVVM.WindowFsm
         private IWindow _currentWindow;
         public Type CurrentWindow { get; }
 
-        public bool IsOpenWindow => _currentWindow != null;  // IsWindowOpened?
+        public bool IsOpenWindow => _currentWindow != null;  // Is it an opend Window
 
         protected WindowFsm()
         {

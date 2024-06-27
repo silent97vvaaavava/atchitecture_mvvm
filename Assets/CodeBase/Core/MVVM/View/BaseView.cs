@@ -43,6 +43,7 @@ namespace Core.MVVM.View
             _viewModel = provider.Get<TViewModel>();
 
             _viewModel.InvokedOpen += Show;
+            
             _viewModel.InvokedClose += Hide;
         }
 

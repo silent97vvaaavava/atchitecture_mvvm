@@ -19,7 +19,6 @@ namespace Training.MVVM.ViewModel
         
         public void InvokeOpen(Type stateType)
         {
-            Debug.Log($"Invoke open GameplayModel to state: {stateType.Name}");
             _model.SwitchToState(stateType);
         }
 
