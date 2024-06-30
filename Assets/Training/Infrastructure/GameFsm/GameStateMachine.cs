@@ -14,7 +14,6 @@ namespace Training.Infrastructure.GameFsm
 
         public void Initialize()
         {
-            Debug.Log("Initialize State Machine");
             _states.TryAdd(typeof(MainMenuState), _factory.Create<MainMenuState>());
             _states.TryAdd(typeof(GameplayState), _factory.Create<GameplayState>());
             Enter<MainMenuState>();

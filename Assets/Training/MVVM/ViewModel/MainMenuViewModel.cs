@@ -51,7 +51,7 @@ namespace Training.MVVM.ViewModel
             
         }   
         
-        //TODO ВЫЗЫВАТЬ ЭТО ИЗ State. Перенести сюда логику работы с WindowFsm
+        //TODO ВЫЗЫВАТЬ ЭТО ИЗ State. Перенести сюда логику работы с WindowFsm // Не, не актуально
 
         public override void InvokeClose()
         {

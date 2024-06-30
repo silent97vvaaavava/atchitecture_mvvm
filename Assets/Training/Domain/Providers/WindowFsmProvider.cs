@@ -1,7 +1,9 @@
 using Core.Domain.Providers;
 using Core.MVVM.WindowFsm;
+using System.Diagnostics;
 using Training.MVVM.WindowFsm;
 using Zenject;
+using UnityEngine;
 
 namespace Training.Domain.Providers 
 {
@@ -15,10 +17,16 @@ namespace Training.Domain.Providers
         {
             _container = container;
         }
-        
+
         public IWindowFsm General => _general ??= _container.Instantiate<WindowFsm>();
         public IWindowFsm Local => _local ??= _container.Instantiate<WindowFsm>();
 
-        public void Set(IWindowFsm windowFsm) => _local = windowFsm;
+        public void Set(IWindowFsm windowFsm)
+        {
+            var gay = (WindowFsm)windowFsm;
+            UnityEngine.Debug.Log("SET WINDOW FSM. Number of fsm - " + gay.fsmNumber.ToString());
+            _local = windowFsm;
+
+        }
     }
 }

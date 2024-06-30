@@ -8,6 +8,8 @@ namespace Training.MVVM.WindowFsm
 {
     public class WindowFsm : IWindowFsm, IWindowResolve
     {
+        public int fsmNumber;
+
         public event Action<Type> Opened;
         public event Action<Type> Closed;
 
@@ -27,6 +29,7 @@ namespace Training.MVVM.WindowFsm
 
         public void Set<TView>() where TView : class, IView
         {
+            Debug.Log("Set view to the window fsm " + typeof(TView).Name);
             if (_windows.ContainsKey(typeof(TView))) return;
             var window = new Window(typeof(TView));
             window.Opened += OnOpened;
@@ -34,11 +37,23 @@ namespace Training.MVVM.WindowFsm
             _windows.Add(typeof(TView), window);
         }
 
+        private string DebugDictionary(Dictionary<Type, IWindow> windows)
+        {
+            string message = "";
+            foreach (var key in windows.Keys)
+            {
+                message += key.ToString();
+                message += " "; 
+            }
+            return message;
+        }
         public void OpenWindow(Type windowType)
         {
+            Debug.Log($"Открываем окно типa: {windowType.Name}. В списке windowFsm: {DebugDictionary(_windows)}. Номер стейт машины - {fsmNumber}");
+
             if (_currentWindow == _windows[windowType])
                 return;
-            Debug.Log($"Open window{windowType.Name}");
+            //Debug.Log($"Open window{windowType.Name}");
 
             _currentWindow?.Close();
             _windowHistory.Push(_windows[windowType]);

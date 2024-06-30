@@ -1,3 +1,4 @@
+using Core.MVVM.WindowFsm;
 using Training.Domain.Factories;
 using Training.Domain.Providers;
 using Training.MVVM.Model;
@@ -26,16 +27,24 @@ namespace Training.Installers
         private void BindWindowFsm()
         {
             var localWindowFsm = Container.Instantiate<WindowFsm>();
-            
+
+            localWindowFsm.fsmNumber = 1;
+
             localWindowFsm.Set<MainMenuView>(); //Not good
 
+            //Container
+            //    .BindInterfacesAndSelfTo<WindowFsm>()
+            //    .FromInstance(localWindowFsm)
+            //    .AsCached()
+            //    .NonLazy();
+
             Container
-                .BindInterfacesAndSelfTo<WindowFsm>()
+                .Bind<IWindowFsm>()
                 .FromInstance(localWindowFsm)
-                .AsCached()
+                .AsSingle()
                 .NonLazy();
-            
-            _fsmProvider.Set(localWindowFsm );
+
+            _fsmProvider.Set(localWindowFsm);
         }
 
         private void BindProviders()
