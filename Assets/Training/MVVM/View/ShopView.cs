@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.Training;
-using Core.Domain.Providers;
 using Core.MVVM.View;
-using Core.MVVM.ViewModel;
 using Training.MVVM.ViewModel;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,9 +15,9 @@ namespace Training.MVVM.View
         [SerializeField] private Button _closeButton;
 
         [Inject]
-        protected override void Construct(IProviderGet<IViewModel> provider)
+        protected override void Construct(ShopViewModel viewModel)
         {
-            base.Construct(provider);
+            base.Construct(viewModel);
 
             _viewModel.OnProductsUpdated += DisplayProducts;
             _closeButton.onClick.AddListener(() => _viewModel.InvokeClose());

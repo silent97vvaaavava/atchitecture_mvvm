@@ -23,9 +23,9 @@ namespace Training.MVVM.View
         [SerializeField] private Button _settingsButton;
 
         [Inject]
-        protected override void Construct(IProviderGet<IViewModel> provider)
+        protected override void Construct(MainMenuViewModel viewModel)
         {
-            base.Construct(provider);
+            base.Construct(viewModel);
 
             _viewModel.OnCoinsChanged += UpdateCoinsText;
             _viewModel.OnCrystalsChanged += UpdateCrystalsText;
@@ -33,6 +33,17 @@ namespace Training.MVVM.View
             _playButton.onClick.AddListener(OnPlayButtonClicked);
             _settingsButton.onClick.AddListener(OnSettingsButtonClicked);
         }
+
+        //protected override void Construct(IProviderGet<IViewModel> provider)
+        //{
+        //    base.Construct(provider);
+
+        //    _viewModel.OnCoinsChanged += UpdateCoinsText;
+        //    _viewModel.OnCrystalsChanged += UpdateCrystalsText;
+
+        //    _playButton.onClick.AddListener(OnPlayButtonClicked);
+        //    _settingsButton.onClick.AddListener(OnSettingsButtonClicked);
+        //}
 
         private void UpdateCoinsText(string amount) => _coinsCounter.text = amount;
         private void UpdateCrystalsText(string amount) => _crystalsCounter.text = amount;

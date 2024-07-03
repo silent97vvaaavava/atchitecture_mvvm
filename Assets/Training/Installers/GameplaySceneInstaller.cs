@@ -1,5 +1,4 @@
 using Core.MVVM.WindowFsm;
-using Training.Domain.Factories;
 using Training.Domain.Providers;
 using Training.MVVM.Model;
 using Training.MVVM.View;
@@ -18,10 +17,13 @@ namespace Training.Installers
             Container
                 .BindInterfacesAndSelfTo<GameplayModel>()
                 .AsSingle()
+                .NonLazy();      
+            Container
+                .BindInterfacesAndSelfTo<GameplayViewModel>()
+                .AsSingle()
                 .NonLazy();
             
             BindWindowFsm();
-            BindProviders();
         }
 
         private void BindWindowFsm()
@@ -39,26 +41,6 @@ namespace Training.Installers
                 .NonLazy();
 
             _fsmProvider.Set(localWindowFsm);
-        }
-
-        private void BindProviders()
-        {
-            Container
-                .BindInterfacesAndSelfTo<ViewModelFactory>()
-                .FromNew()
-                .AsSingle()
-                .NonLazy();
-            
-            var provider = Container
-                .Instantiate<ViewModelProvider>();
-            
-            Container
-                .BindInterfacesAndSelfTo<ViewModelProvider>()
-                .FromInstance(provider)
-                .AsSingle()
-                .NonLazy();
-            
-            provider.Set<GameplayViewModel>();
         }
     }
 }

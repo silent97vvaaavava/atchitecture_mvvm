@@ -1,5 +1,4 @@
-﻿using Core.Domain.Factories;
-using Core.Infrastructure.GameFsm.States;
+﻿using Assets.Training;
 using Zenject;
 
 namespace Training.Domain.Factories

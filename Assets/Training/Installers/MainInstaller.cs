@@ -46,12 +46,6 @@ namespace Training.Installers
                 .BindInterfacesAndSelfTo<StatesFactory>()
                 .AsSingle()
                 .NonLazy();
-
-            Container
-                .BindInterfacesAndSelfTo<ViewModelFactory>()
-                .FromNew()
-                .AsSingle()
-                .NonLazy();
         }
 
         private void BindProviders()
@@ -60,12 +54,6 @@ namespace Training.Installers
                 .BindInterfacesAndSelfTo<WindowFsmProvider>()
                 .AsSingle()
                 .WithArguments(Container)
-                .NonLazy();
-
-            Container
-                .BindInterfacesAndSelfTo<ViewModelProvider>()
-                .FromNew()
-                .AsSingle()
                 .NonLazy();
         }
     }

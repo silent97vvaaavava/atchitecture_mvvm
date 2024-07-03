@@ -1,5 +1,6 @@
+using Core.Domain.Factories;
+using Core.Domain.Providers;
 using Core.MVVM.WindowFsm;
-using Training.Domain.Factories;
 using Training.Domain.Providers;
 using Training.MVVM.Model;
 using Training.MVVM.View;
@@ -19,9 +20,13 @@ namespace Training.Installers
                 .BindInterfacesAndSelfTo<MainMenuModel>()
                 .AsSingle()
                 .NonLazy();
-            
+
+            Container
+                .BindInterfacesAndSelfTo<MainMenuViewModel>()
+                .AsSingle()
+                .NonLazy();
+
             BindWindowFsm();
-            BindProviders();
         }
 
         private void BindWindowFsm()
@@ -32,12 +37,6 @@ namespace Training.Installers
 
             localWindowFsm.Set<MainMenuView>(); //Not good
 
-            //Container
-            //    .BindInterfacesAndSelfTo<WindowFsm>()
-            //    .FromInstance(localWindowFsm)
-            //    .AsCached()
-            //    .NonLazy();
-
             Container
                 .Bind<IWindowFsm>()
                 .FromInstance(localWindowFsm)
@@ -47,24 +46,23 @@ namespace Training.Installers
             _fsmProvider.Set(localWindowFsm);
         }
 
-        private void BindProviders()
-        {
-            Container
-                .BindInterfacesAndSelfTo<ViewModelFactory>()
-                .FromNew()
-                .AsSingle()
-                .NonLazy();
-            
-            var provider = Container
-                .Instantiate<ViewModelProvider>();
-            
-            Container
-                .BindInterfacesAndSelfTo<ViewModelProvider>()
-                .FromInstance(provider)
-                .AsSingle()
-                .NonLazy();
-            
-            provider.Set<MainMenuViewModel>();
-        }
+        //private void BindProviders()
+        //{
+        //    Container
+        //        .BindInterfacesAndSelfTo<ViewModelFactory>()
+        //        .FromNew()
+        //        .AsSingle()
+        //    .NonLazy();
+
+        //    var provider = Container
+        //        .Instantiate<ViewModelProvider>();
+        //    Container
+        //        .BindInterfacesAndSelfTo<ViewModelProvider>()
+        //        .FromInstance(provider)
+        //        .AsSingle()
+        //        .NonLazy();
+
+        //    provider.Set<MainMenuViewModel>();
+        //}
     }
 }

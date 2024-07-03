@@ -18,9 +18,9 @@ namespace Training.MVVM.View
         [SerializeField] private Button _backButton;
         
         [Inject]
-        protected override void Construct(IProviderGet<IViewModel> provider)
+        protected override void Construct(GameplayViewModel viewModel)
         {
-            base.Construct(provider);
+            base.Construct(viewModel);
             _backButton.onClick.AddListener(OnBackButtonClicked);
         }
 

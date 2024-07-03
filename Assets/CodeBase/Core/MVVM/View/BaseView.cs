@@ -38,14 +38,23 @@ namespace Core.MVVM.View
             }
         }
 
-        protected virtual void Construct(IProviderGet<IViewModel> provider)
+        protected virtual void Construct(TViewModel viewModel)
         {
-            _viewModel = provider.Get<TViewModel>();
+            _viewModel = viewModel;
 
             _viewModel.InvokedOpen += Show;
             
             _viewModel.InvokedClose += Hide;
         }
+
+        //protected virtual void Construct(IProviderGet<IViewModel> provider)
+        //{
+        //    _viewModel = provider.Get<TViewModel>();
+
+        //    _viewModel.InvokedOpen += Show;
+
+        //    _viewModel.InvokedClose += Hide;
+        //}
 
         public virtual void Show()
         {
