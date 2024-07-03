@@ -7,7 +7,7 @@ namespace Training.Domain.Factories
     public class StatesFactory : IStatesFactory
     {
         private readonly DiContainer _diContainer;
-
+            
         public StatesFactory(DiContainer diContainer)
         {
             _diContainer = diContainer;

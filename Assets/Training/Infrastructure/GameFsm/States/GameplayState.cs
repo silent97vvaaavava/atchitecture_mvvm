@@ -1,5 +1,6 @@
 using System.Collections;
 using Core.Domain.Providers;
+using Core.Infrastructure;
 using Core.Infrastructure.GameFsm;
 using Core.Infrastructure.GameFsm.States;
 using Core.MVVM.WindowFsm;
@@ -12,11 +13,11 @@ namespace Training.Infrastructure.GameFsm.States
 {
     public class GameplayState : AbstractState
     {
-        private readonly SceneService _sceneService;
+        private readonly SceneLoader _sceneService;
         private readonly IWindowFsmProvider _windowFsmProvider;
         private IWindowFsm _windowFsm;
 
-        public GameplayState(IGameFsm gameFsm, SceneService sceneService, IWindowFsmProvider windowFsmProvider) : base(gameFsm)
+        public GameplayState(IGameFsm gameFsm, SceneLoader sceneService, IWindowFsmProvider windowFsmProvider) : base(gameFsm)
         {
             _sceneService = sceneService;
             _windowFsmProvider = windowFsmProvider;
@@ -25,8 +26,7 @@ namespace Training.Infrastructure.GameFsm.States
         public override async void Enter()
         {
             base.Enter();
-            await _sceneService.OnLoadSceneAsync(1);
-            await UniTask.Delay(2000);
+            await _sceneService.LoadScene("GameplayScene");
             _windowFsm = _windowFsmProvider.Local;
             _windowFsm.OpenWindow(typeof(GameplayView));
         }
