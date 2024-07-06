@@ -1,9 +1,12 @@
+using Core.MVVM.View;
+using Training.MVVM.ViewModel;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Training.MVVM.View
-{
-    public class SettingsView : MonoBehaviour
+{   
+    public class SettingsView : BaseView<SettingsViewModel>
     {
         private const string SOUND = "Sound";
         private const string MUSIC = "MUSIC";
@@ -12,28 +15,26 @@ namespace Training.MVVM.View
         [SerializeField] private Toggle _soundToggle;
         [SerializeField] private Toggle _musicToggle;
 
-        private void Awake()
+        [Inject]
+        protected override void Construct(SettingsViewModel viewModel)
         {
-            _closeButton.onClick.AddListener(OnClose);
+            base.Construct(viewModel);
+
+            _closeButton.onClick.AddListener(() => _viewModel.InvokeClose());
             _soundToggle.onValueChanged.AddListener(OnClickSound);
             _musicToggle.onValueChanged.AddListener(OnClickMusic);
-            
+
             if (PlayerPrefs.HasKey(SOUND))
             {
                 bool isOn = PlayerPrefs.GetInt(SOUND) == 1;
                 _soundToggle.isOn = isOn;
             }
-            
+
             if (PlayerPrefs.HasKey(MUSIC))
             {
                 bool isOn = PlayerPrefs.GetInt(MUSIC) == 1;
                 _musicToggle.isOn = isOn;
             }
-        }
-
-        private void OnClose()
-        {
-            gameObject.SetActive(false);
         }
 
         private void OnClickSound(bool isOn)

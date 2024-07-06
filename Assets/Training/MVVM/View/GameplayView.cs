@@ -26,7 +26,7 @@ namespace Training.MVVM.View
 
         private void OnBackButtonClicked()
         {
-            _viewModel.InvokeOpen(_stateToGo.Type);
+            _viewModel.SwitchToState();
         }
     }
 }

@@ -1,21 +1,28 @@
 using System;
+using Core.Infrastructure.GameFsm;
 using Core.MVVM.ViewModel;
 using Core.MVVM.WindowFsm;
+using Training.Infrastructure.GameFsm.States;
 using Training.MVVM.Model;
 using Training.MVVM.View;
-using UnityEngine;
+using TypeReferences;
 
 namespace Training.MVVM.ViewModel
 {
     public class MainMenuViewModel : BaseViewModel
     {
+        [Inherits(typeof(IExitableState))]
+        private Type _stateToGo;
+
         private readonly MainMenuModel _model;
         protected override Type Window => typeof(MainMenuView);
+
         public event Action<string> OnCoinsChanged;
         public event Action<string> OnCrystalsChanged;
         
         public MainMenuViewModel(IWindowFsm windowFsm, MainMenuModel model) : base(windowFsm)
         {
+            _stateToGo = typeof(GameplayState);
             _model = model;
             _model.OnCoinsChanged += IndicateCoinsChanging;
             _model.OnCrystalsChanged += IndicateCrystalsChanging;
@@ -36,23 +43,31 @@ namespace Training.MVVM.ViewModel
 
         private void IndicateCrystalsChanging(int amount)
         {
-            Debug.Log("INDICATE CRYSTALS CHANGING");
             var amountText = amount.ToString();
             OnCrystalsChanged?.Invoke(amountText);
         }
 
-        public void InvokeOpen(Type stateType)  // Rename to OpenNewState || SwitchToState
-        { 
-            _model.SwitchToState(stateType);
+        public void OpenShop()
+        {
+            _windowFsm.OpenOneWindow(typeof(ShopView));
         }
+        public void OpenSettings()
+        {
+            _windowFsm.OpenOneWindow(typeof(SettingsView));
+        }
+
+        public void SwitchToState()  // Rename to OpenNewState || SwitchToState
+        {
+            _model.SwitchToState(_stateToGo);
+        }
+
+        public void InvokeOpen(Type type) { }
 
         public override void InvokeOpen()
         {
             
         }   
         
-        //TODO ВЫЗЫВАТЬ ЭТО ИЗ State. Перенести сюда логику работы с WindowFsm // Не, не актуально
-
         public override void InvokeClose()
         {
             //_windowFsm.CloseWindow(Window); 

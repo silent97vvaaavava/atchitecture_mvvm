@@ -20,5 +20,6 @@ namespace Training.Domain.Factories
 
     public interface IProductFactory
     {
+
     }
 }

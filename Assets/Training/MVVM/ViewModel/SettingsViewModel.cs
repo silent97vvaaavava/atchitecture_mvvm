@@ -23,7 +23,8 @@ namespace Training.MVVM.ViewModel
         public override void InvokeClose()
         {
             Debug.Log("Close Settings");
-            _windowFsm.CloseCurrentWindow();
+            //_windowFsm.CloseCurrentWindow();
+            _windowFsm.CloseWindow(Window);
         }
     }
-}
+}   

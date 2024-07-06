@@ -11,9 +11,7 @@ namespace Training.Services
     {
         private CancellationTokenSource _cts;
         
-        public SceneService()
-        {
-        }
+        public SceneService() { }
 
         private bool IsCurrentScene(int sceneIndex) => 
             SceneManager.GetActiveScene().buildIndex == sceneIndex;

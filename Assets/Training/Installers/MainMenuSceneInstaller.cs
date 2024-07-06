@@ -1,11 +1,14 @@
 using Core.Domain.Factories;
 using Core.Domain.Providers;
 using Core.MVVM.WindowFsm;
+using Training.Domain.Factories;
+using Training.Domain.Models;
 using Training.Domain.Providers;
 using Training.MVVM.Model;
 using Training.MVVM.View;
 using Training.MVVM.ViewModel;
 using Training.MVVM.WindowFsm;
+using UnityEngine;
 using Zenject;
 
 namespace Training.Installers
@@ -13,19 +16,35 @@ namespace Training.Installers
     public class MainMenuSceneInstaller : MonoInstaller
     {
         [Inject] private WindowFsmProvider _fsmProvider;
-        
+        [SerializeField] private CurrencyProductView _productPrefab;
+
         public override void InstallBindings()
         {
             Container
                 .BindInterfacesAndSelfTo<MainMenuModel>()
                 .AsSingle()
                 .NonLazy();
-
             Container
                 .BindInterfacesAndSelfTo<MainMenuViewModel>()
                 .AsSingle()
                 .NonLazy();
 
+            //Container
+            //    .BindInterfacesAndSelfTo<SettingsModel>()
+            //    .AsSingle()
+            //    .NonLazy();
+            Container
+                .BindInterfacesAndSelfTo<SettingsViewModel>()
+                .AsSingle()
+                .NonLazy();
+
+            //Container
+            //    .BindInterfacesAndSelfTo<CurrencyModel>()
+            //    .AsSingle()
+            //    .NonLazy();
+
+            BindShop();
+           
             BindWindowFsm();
         }
 
@@ -35,7 +54,10 @@ namespace Training.Installers
 
             localWindowFsm.fsmNumber = 1;
 
-            localWindowFsm.Set<MainMenuView>(); //Not good
+            //Not good
+            localWindowFsm.Set<MainMenuView>();
+            localWindowFsm.Set<SettingsView>();
+            localWindowFsm.Set<ShopView>(); 
 
             Container
                 .Bind<IWindowFsm>()
@@ -45,6 +67,24 @@ namespace Training.Installers
 
             _fsmProvider.Set(localWindowFsm);
         }
+
+        private void BindShop()
+        {
+            //Container
+            //    .BindInterfacesAndSelfTo<ProductFactory>()
+            //    .AsSingle()
+            //    .WithArguments(_productPrefab)
+            //    .NonLazy();
+
+            Container
+                .BindInterfacesAndSelfTo<ShopModel>()
+                .AsSingle()
+                .NonLazy();
+            Container
+                .BindInterfacesAndSelfTo<ShopViewModel>()
+                .AsSingle()
+                .NonLazy();
+           }
 
         //private void BindProviders()
         //{

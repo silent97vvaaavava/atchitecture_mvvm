@@ -1,10 +1,10 @@
-﻿using Assets.Training;
+﻿using Assets.Training.Domain;
 using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ProductView : MonoBehaviour
+public class CurrencyProductView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private TMP_Text _priceText;

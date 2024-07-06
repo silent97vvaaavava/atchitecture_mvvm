@@ -27,7 +27,11 @@ namespace Training.Installers
 
         private void BindServices()
         {
-            Container.Bind<ICoroutineRunner>().To<Coroutines>().AsSingle().NonLazy();
+            Container
+                .Bind<ICoroutineRunner>()
+                .To<Coroutines>()
+                .AsSingle()
+                .NonLazy();
 
             Container
                 .BindInterfacesAndSelfTo<SceneLoader>()

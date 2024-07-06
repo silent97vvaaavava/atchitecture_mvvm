@@ -1,4 +1,4 @@
-﻿using Assets.Training;
+﻿using Assets.Training.Domain;
 using Core.MVVM.Model;
 using System;
 using System.Collections.Generic;

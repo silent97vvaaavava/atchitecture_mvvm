@@ -1,7 +1,6 @@
 using Core.Domain.Factories;
 using Core.Infrastructure.GameFsm;
 using Training.Infrastructure.GameFsm.States;
-using UnityEngine;
 using IInitializable = Zenject.IInitializable;
 
 namespace Training.Infrastructure.GameFsm

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Assets.Training;
+using Assets.Training.Domain;
 using Core.MVVM.View;
 using Training.MVVM.ViewModel;
 using UnityEngine;
@@ -13,9 +13,10 @@ namespace Training.MVVM.View
         [SerializeField] private Transform _productContainer;
         [SerializeField] private GameObject _productPrefab;
         [SerializeField] private Button _closeButton;
+        //private ProductFactory _productFactory;
 
         [Inject]
-        protected override void Construct(ShopViewModel viewModel)
+        protected override void Construct(ShopViewModel viewModel/*, CurrencyProduct currencyProduct*/)
         {
             base.Construct(viewModel);
 
@@ -32,8 +33,9 @@ namespace Training.MVVM.View
 
             foreach (var product in products)
             {
+                //var productInstance = _productFactory.CreateProduct(product);
                 var productInstance = Instantiate(_productPrefab, _productContainer);
-                var productView = productInstance.GetComponent<ProductView>();
+                var productView = productInstance.GetComponent<CurrencyProductView>();
                 productView.SetProduct(product);
                 productView.OnBuy += () => _viewModel.BuyProduct(product);
             }

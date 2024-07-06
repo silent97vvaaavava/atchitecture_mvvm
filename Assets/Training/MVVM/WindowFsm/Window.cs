@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Core.MVVM.WindowFsm;
 
 namespace Training.MVVM.WindowFsm
@@ -15,8 +16,7 @@ namespace Training.MVVM.WindowFsm
             UIWindow = uiWindow;
         }
 
-        public void Open() => 
-            Opened?.Invoke(UIWindow);
+        public void Open() => Opened?.Invoke(UIWindow);
 
         public void Close() => 
             Closed?.Invoke(UIWindow);
