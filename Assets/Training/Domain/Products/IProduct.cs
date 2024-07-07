@@ -4,5 +4,6 @@
     {
         string Name { get; }
         int Price { get; }
+        bool IsCoinProduct { get; }
     }
 }

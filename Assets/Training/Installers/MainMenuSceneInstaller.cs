@@ -1,8 +1,6 @@
-using Core.Domain.Factories;
-using Core.Domain.Providers;
 using Core.MVVM.WindowFsm;
 using Training.Domain.Factories;
-using Training.Domain.Models;
+using Training.Domain.Products;
 using Training.Domain.Providers;
 using Training.MVVM.Model;
 using Training.MVVM.View;
@@ -16,7 +14,7 @@ namespace Training.Installers
     public class MainMenuSceneInstaller : MonoInstaller
     {
         [Inject] private WindowFsmProvider _fsmProvider;
-        [SerializeField] private CurrencyProductView _productPrefab;
+        [SerializeField] private ProductView _productPrefab;
 
         public override void InstallBindings()
         {
@@ -70,11 +68,11 @@ namespace Training.Installers
 
         private void BindShop()
         {
-            //Container
-            //    .BindInterfacesAndSelfTo<ProductFactory>()
-            //    .AsSingle()
-            //    .WithArguments(_productPrefab)
-            //    .NonLazy();
+            Container
+                .BindInterfacesAndSelfTo<ProductViewFactory>()
+                .AsSingle()
+                .WithArguments(_productPrefab)
+                .NonLazy();
 
             Container
                 .BindInterfacesAndSelfTo<ShopModel>()

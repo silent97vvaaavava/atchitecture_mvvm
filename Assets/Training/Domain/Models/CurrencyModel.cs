@@ -1,38 +1,38 @@
-﻿using System;
-using UnityEngine;
+﻿using Core.MVVM.Model;
+using System;
 
-namespace Training.Domain.Models
+namespace Training.MVVM.Model
 {
-    public class CurrencyModel : MonoBehaviour
+    public class CurrencyModel : IModel
     {
-        public int Coins { get; private set; }
-        public int Crystals { get; private set; }
+        private int _currentCoins = 100;
+        private int _currentCrystals = 50;
 
         public event Action<int> OnCoinsChanged;
         public event Action<int> OnCrystalsChanged;
 
-        public void AddCoins(int amount)
+        public int CurrentCoins
         {
-            Coins += amount;
-            OnCoinsChanged?.Invoke(Coins);
+            get => _currentCoins;
+            private set
+            {
+                _currentCoins = value;
+                OnCoinsChanged?.Invoke(_currentCoins);
+            }
+        }
+        public int CurrentCrystals
+        {
+            get => _currentCrystals;
+            private set
+            {
+                _currentCrystals = value;
+                OnCrystalsChanged?.Invoke(_currentCrystals);
+            }
         }
 
-        public void SubtractCoins(int amount)
-        {
-            Coins -= amount;
-            OnCoinsChanged?.Invoke(Coins);
-        }
-
-        public void AddCrystals(int amount)
-        {
-            Crystals += amount;
-            OnCrystalsChanged?.Invoke(Crystals);
-        }
-
-        public void SubtractCrystals(int amount)
-        {
-            Crystals -= amount;
-            OnCrystalsChanged?.Invoke(Crystals);
-        }
+        public void AddCoins(int amount) => CurrentCoins += amount;
+        public void AddCrystals(int amount) => CurrentCrystals += amount;
+        public void SubtractCoins(int amount) => CurrentCoins -= amount;
+        public void SubtractCrystals(int amount) => CurrentCrystals -= amount;
     }
 }

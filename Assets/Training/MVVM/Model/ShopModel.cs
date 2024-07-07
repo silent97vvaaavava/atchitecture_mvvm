@@ -1,4 +1,5 @@
-﻿using Assets.Training.Domain;
+﻿using Assets.Training;
+using Assets.Training.Domain;
 using Core.MVVM.Model;
 using System;
 using System.Collections.Generic;
@@ -9,16 +10,16 @@ public class ShopModel : IModel
     private readonly List<Product> _products;
     private readonly MainMenuModel _currencyModel;
 
-    public event Action<List<Product>> OnProductsUpdated;
+    public event Action OnProductsUpdated;
 
     public ShopModel(MainMenuModel currencyModel)
     {
         _currencyModel = currencyModel;
         _products = new List<Product>
         {
-            new Product("Item 1", 10),
-            new Product("Item 2", 20),
-            new Product("Item 3", 30)
+            new Product("Item 1", 10, false),
+            new Product("Item 2", 20, true),
+            new Product("Item 3", 30, false)
         };
     }
 
@@ -26,12 +27,28 @@ public class ShopModel : IModel
 
     public void BuyProduct(Product product)
     {
-        if (_currencyModel.CurrentCoins >= product.Price)
+        if (product.IsCoinProduct && _currencyModel.CurrentCoins >= product.Price)
         {
             _currencyModel.SubtractCoins(product.Price);
-            // Logic for adding product to inventory, etc.
+            _products.Remove(product);
+            OnProductsUpdated?.Invoke();
+        }
+        else if (!product.IsCoinProduct && _currencyModel.CurrentCrystals >= product.Price)
+        {
+            _currencyModel.SubtractCrystals(product.Price);
+            _products.Remove(product);            
+            OnProductsUpdated?.Invoke();
         }
     }
 
-    public void UpdateProducts() => OnProductsUpdated?.Invoke(_products);
+    //public void BuyProduct(Product product)
+    //{
+    //    if (_currencyModel.CurrentCoins >= product.Price)
+    //    {
+    //        _currencyModel.SubtractCoins(product.Price);
+    //        // Logic for adding product to inventory, etc.
+    //    }
+    //}
+
+    public void UpdateProducts() => OnProductsUpdated?.Invoke();
 }

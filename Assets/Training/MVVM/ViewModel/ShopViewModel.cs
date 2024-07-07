@@ -3,7 +3,6 @@ using Core.MVVM.ViewModel;
 using Core.MVVM.WindowFsm;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Training.MVVM.Model;
 using Training.MVVM.View;
 
@@ -11,30 +10,28 @@ namespace Training.MVVM.ViewModel
 {
     public class ShopViewModel : BaseViewModel
     {
+        private readonly CurrencyModel _currencyModel;
         private readonly ShopModel _model;
-        private readonly MainMenuModel _mainMenuModel;
+        private readonly MainMenuModel _mainMenuModel;  //TODO This is currency model
         protected override Type Window => typeof(ShopView);
 
-        public event Action<List<Product>> OnProductsUpdated;
+        public event Action OnProductsUpdated;
 
-        public ShopViewModel(IWindowFsm windowFsm, ShopModel shopModel, MainMenuModel mainMenuModel) : base(windowFsm)
+        public ShopViewModel(IWindowFsm windowFsm, ShopModel shopModel/*, MainMenuModel mainMenuModel*/) : base(windowFsm)
         {
             _model = shopModel;
-            _mainMenuModel = mainMenuModel;
+            //_mainMenuModel = mainMenuModel;
 
-            _model.OnProductsUpdated += products => OnProductsUpdated?.Invoke(products);
+            _model.OnProductsUpdated += () => OnProductsUpdated?.Invoke();
         }
+
+        public List<Product> GetProducts() => _model.GetProducts();
 
         protected override void HandleOpenedWindow(Type uiWindow)
         {
             base.HandleOpenedWindow(uiWindow);
             _model.UpdateProducts();
         }
-
-        //protected override void HandleClosedWindow(Type uiWindow)
-        //{
-        //    base.HandleClosedWindow(uiWindow);
-        //}
 
         public void BuyProduct(Product product) => _model.BuyProduct(product);
 
