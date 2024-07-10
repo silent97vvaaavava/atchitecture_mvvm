@@ -4,10 +4,10 @@ using Zenject;
 
 namespace Training.Domain.Factories
 {
-    public class ProductViewFactory : IProductViewFactory
+    public class ProductViewFactory : IProductViewFactory   
     {
         private readonly DiContainer _diContainer;
-        private readonly ProductView _productPrefab;
+        private readonly ProductView _productPrefab;    
 
         public ProductViewFactory(DiContainer diContainer, ProductView productPrefab)
         {
@@ -17,6 +17,7 @@ namespace Training.Domain.Factories
 
         public ProductView Create(Transform parent)
         {
+            Debug.Log("PREFAB IS - " + _productPrefab);
             return _diContainer.InstantiatePrefabForComponent<ProductView>(_productPrefab, parent);
         }
     }

@@ -10,19 +10,17 @@ namespace Training.MVVM.ViewModel
 {
     public class ShopViewModel : BaseViewModel
     {
-        private readonly CurrencyModel _currencyModel;
         private readonly ShopModel _model;
-        private readonly MainMenuModel _mainMenuModel;  //TODO This is currency model
+        private readonly CurrencyModel _currencyModel;
         protected override Type Window => typeof(ShopView);
 
         public event Action OnProductsUpdated;
 
-        public ShopViewModel(IWindowFsm windowFsm, ShopModel shopModel/*, MainMenuModel mainMenuModel*/) : base(windowFsm)
+        public ShopViewModel(IWindowFsm windowFsm, ShopModel shopModel) : base(windowFsm)
         {
             _model = shopModel;
-            //_mainMenuModel = mainMenuModel;
 
-            _model.OnProductsUpdated += () => OnProductsUpdated?.Invoke();
+            _model.OnProductsUpdated += UpdateViewProducts;
         }
 
         public List<Product> GetProducts() => _model.GetProducts();
@@ -30,7 +28,12 @@ namespace Training.MVVM.ViewModel
         protected override void HandleOpenedWindow(Type uiWindow)
         {
             base.HandleOpenedWindow(uiWindow);
-            _model.UpdateProducts();
+            UpdateViewProducts();            //TODO Здесь проблема
+        }
+
+        private void UpdateViewProducts()
+        {
+            OnProductsUpdated?.Invoke();
         }
 
         public void BuyProduct(Product product) => _model.BuyProduct(product);
@@ -40,7 +43,6 @@ namespace Training.MVVM.ViewModel
         public override void InvokeClose()
         {
             _windowFsm.CloseWindow(Window);
-            UnityEngine.Debug.Log("Invoke Close from ShopViewModel");
         }
     }
 }

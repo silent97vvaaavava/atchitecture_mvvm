@@ -21,12 +21,6 @@ namespace Training.Domain.Providers
         public IWindowFsm General => _general ??= _container.Instantiate<WindowFsm>();
         public IWindowFsm Local => _local ??= _container.Instantiate<WindowFsm>();
 
-        public void Set(IWindowFsm windowFsm)
-        {
-            var gay = (WindowFsm)windowFsm;
-            UnityEngine.Debug.Log("SET WINDOW FSM. Number of fsm - " + gay.fsmNumber.ToString());
-            _local = windowFsm;
-
-        }
+        public void Set(IWindowFsm windowFsm) => _local = windowFsm;
     }
 }

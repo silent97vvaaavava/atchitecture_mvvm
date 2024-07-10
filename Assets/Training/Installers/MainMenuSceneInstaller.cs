@@ -1,4 +1,5 @@
 using Core.MVVM.WindowFsm;
+using System;
 using Training.Domain.Factories;
 using Training.Domain.Products;
 using Training.Domain.Providers;
@@ -27,6 +28,20 @@ namespace Training.Installers
                 .AsSingle()
                 .NonLazy();
 
+            Container
+                .BindInterfacesAndSelfTo<CurrencyModel>()
+                .AsSingle()
+                .NonLazy();
+
+            BindShop();
+
+            BindSettings();
+           
+            BindWindowFsm();
+        }
+
+        private void BindSettings()
+        {
             //Container
             //    .BindInterfacesAndSelfTo<SettingsModel>()
             //    .AsSingle()
@@ -35,15 +50,6 @@ namespace Training.Installers
                 .BindInterfacesAndSelfTo<SettingsViewModel>()
                 .AsSingle()
                 .NonLazy();
-
-            //Container
-            //    .BindInterfacesAndSelfTo<CurrencyModel>()
-            //    .AsSingle()
-            //    .NonLazy();
-
-            BindShop();
-           
-            BindWindowFsm();
         }
 
         private void BindWindowFsm()

@@ -15,24 +15,26 @@ namespace Training.MVVM.ViewModel
         private Type _stateToGo;
 
         private readonly MainMenuModel _model;
+        private readonly CurrencyModel _currencyModel;
         protected override Type Window => typeof(MainMenuView);
 
         public event Action<string> OnCoinsChanged;
         public event Action<string> OnCrystalsChanged;
         
-        public MainMenuViewModel(IWindowFsm windowFsm, MainMenuModel model) : base(windowFsm)
+        public MainMenuViewModel(IWindowFsm windowFsm, MainMenuModel model, CurrencyModel currencyModel) : base(windowFsm)
         {
             _stateToGo = typeof(GameplayState);
             _model = model;
-            _model.OnCoinsChanged += IndicateCoinsChanging;
-            _model.OnCrystalsChanged += IndicateCrystalsChanging;
+            _currencyModel = currencyModel;
+            _currencyModel.OnCoinsChanged += IndicateCoinsChanging;
+            _currencyModel.OnCrystalsChanged += IndicateCrystalsChanging;
         }
 
         protected override void HandleOpenedWindow(Type uiWindow)
         {
             base.HandleOpenedWindow(uiWindow);
-            IndicateCoinsChanging(_model.CurrentCoins);
-            IndicateCrystalsChanging(_model.CurrentCrystals);
+            IndicateCoinsChanging(_currencyModel.CurrentCoins);
+            IndicateCrystalsChanging(_currencyModel.CurrentCrystals);
         }
 
         private void IndicateCoinsChanging(int amount)    // Or rename to HandleCoinsChanged?

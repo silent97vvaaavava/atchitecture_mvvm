@@ -59,10 +59,7 @@ namespace Training.MVVM.WindowFsm
             //Debug.Log($"Открываем окно типa: {windowType.Name}. В списке windowFsm: {DebugDictionary(_windows)}. Номер стейт машины - {fsmNumber}");
         }
 
-        public void OpenOneWindow(Type window)
-        {
-            _windows[window]?.Open();
-        }
+        public void OpenOneWindow(Type window) => _windows[window]?.Open();
 
         public void CloseWindow(Type type)
         {

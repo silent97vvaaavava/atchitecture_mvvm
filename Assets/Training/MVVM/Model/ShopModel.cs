@@ -3,16 +3,17 @@ using Assets.Training.Domain;
 using Core.MVVM.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Training.MVVM.Model;
 
 public class ShopModel : IModel
 {
     private readonly List<Product> _products;
-    private readonly MainMenuModel _currencyModel;
+    private readonly CurrencyModel _currencyModel;
 
     public event Action OnProductsUpdated;
 
-    public ShopModel(MainMenuModel currencyModel)
+    public ShopModel(CurrencyModel currencyModel)
     {
         _currencyModel = currencyModel;
         _products = new List<Product>
@@ -31,24 +32,19 @@ public class ShopModel : IModel
         {
             _currencyModel.SubtractCoins(product.Price);
             _products.Remove(product);
-            OnProductsUpdated?.Invoke();
+            UpdateProducts();
         }
         else if (!product.IsCoinProduct && _currencyModel.CurrentCrystals >= product.Price)
         {
             _currencyModel.SubtractCrystals(product.Price);
-            _products.Remove(product);            
-            OnProductsUpdated?.Invoke();
+            _products.Remove(product);
+            UpdateProducts();
         }
     }
 
-    //public void BuyProduct(Product product)
-    //{
-    //    if (_currencyModel.CurrentCoins >= product.Price)
-    //    {
-    //        _currencyModel.SubtractCoins(product.Price);
-    //        // Logic for adding product to inventory, etc.
-    //    }
-    //}
-
-    public void UpdateProducts() => OnProductsUpdated?.Invoke();
+    public void UpdateProducts()
+    {
+        UnityEngine.Debug.Log("UpdateProducts action had been invoked in ShopModel");
+        OnProductsUpdated?.Invoke();
+    }
 }

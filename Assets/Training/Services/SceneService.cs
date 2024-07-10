@@ -113,7 +113,7 @@ namespace Training.Services
             if (token.IsCancellationRequested)
                 return;
         }
-        
+         
         private async Task LoadingSceneAsync(int sceneIndex, CancellationToken token)
         {
             token.ThrowIfCancellationRequested();

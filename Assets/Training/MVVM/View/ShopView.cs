@@ -23,15 +23,13 @@ namespace Training.MVVM.View
             base.Construct(viewModel);
 
             _viewModel.OnProductsUpdated += UpdateProducts;
-            _closeButton.onClick.AddListener(() => _viewModel.InvokeClose());
+            _closeButton.onClick.AddListener(OnClosedButtonClicked);
         }
 
         private void UpdateProducts()
         {
             foreach (Transform child in _productContainer)
-            {
                 Destroy(child.gameObject);
-            }
 
             var products = _viewModel.GetProducts();
             foreach (var product in products)
@@ -40,6 +38,11 @@ namespace Training.MVVM.View
                 productView.SetProduct(product);
                 productView.OnBuy += () => _viewModel.BuyProduct(product);
             }
+        }
+
+        private void OnClosedButtonClicked()
+        {
+            _viewModel.InvokeClose();
         }
     }
 }

@@ -36,19 +36,9 @@ namespace Training.MVVM.View
         private void UpdateCoinsText(string amount) => _coinsCounter.text = amount;
         private void UpdateCrystalsText(string amount) => _crystalsCounter.text = amount;
 
-        private void OnPlayButtonClicked()
-        {
-            _viewModel.SwitchToState();
-        }
+        private void OnPlayButtonClicked() => _viewModel.SwitchToState();
 
-        private void OnShopButtonClicked()
-        {
-            _viewModel.OpenShop();
-        }
-
-        private void OnSettingsButtonClicked()
-        {
-            _viewModel.OpenSettings();
-        }
+        private void OnShopButtonClicked() => _viewModel.OpenShop();
+        private void OnSettingsButtonClicked() => _viewModel.OpenSettings();
     }
 }
