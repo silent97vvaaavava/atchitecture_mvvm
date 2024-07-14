@@ -6,7 +6,7 @@ namespace Core.Infrastructure.GameFsm.States
     public abstract class AbstractState : IState
     {
         protected readonly IGameFsm GameFsm;
-        private readonly List<ILink> m_Links = new List<ILink>();
+        private readonly List<ILink> m_Links = new();
         
         /// <summary>
         /// The name of the state used for debugging purposes
@@ -20,6 +20,7 @@ namespace Core.Infrastructure.GameFsm.States
 
         public virtual void Enter()
         {
+            
         }
 
         public abstract IEnumerator Execute();

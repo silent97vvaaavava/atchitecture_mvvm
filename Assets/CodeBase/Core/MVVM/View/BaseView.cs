@@ -38,11 +38,12 @@ namespace Core.MVVM.View
             }
         }
 
-        protected virtual void Construct(IProviderGet<IViewModel> provider)
+        protected virtual void Construct(TViewModel viewModel)
         {
-            _viewModel = provider.Get<TViewModel>();
+            _viewModel = viewModel;
 
             _viewModel.InvokedOpen += Show;
+            
             _viewModel.InvokedClose += Hide;
         }
 
@@ -56,7 +57,7 @@ namespace Core.MVVM.View
 
         public virtual void Hide()
         {
-            if(OnAnimationHide.GetPersistentEventCount() > 0)
+            if (OnAnimationHide.GetPersistentEventCount() > 0)
                 OnAnimationHide?.Invoke(() =>  SetActive(false));
             else 
                 SetActive(false);
@@ -64,7 +65,6 @@ namespace Core.MVVM.View
         
         private void SetActive(bool isActive)
         {
-            Debug.Log($"active: {isActive}");
             CanvasGroupElement.alpha = isActive ? 1 : 0;
             CanvasElement.enabled = isActive;
             CanvasGroupElement.blocksRaycasts = isActive;

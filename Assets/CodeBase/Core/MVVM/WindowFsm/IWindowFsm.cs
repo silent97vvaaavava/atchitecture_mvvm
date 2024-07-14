@@ -8,11 +8,11 @@ namespace Core.MVVM.WindowFsm
         event Action<Type> Closed;
         
         Type CurrentWindow { get; }
-        bool IsOpenWindow { get; }
+        bool IsWindowOpened { get; }
         
-        void OpenWindow(Type window);
+        void OpenWindow(Type windowType);
         void OpenOneWindow(Type window);
-        void CloseWindow(Type window);
+        void CloseWindow(Type type);
         void CloseCurrentWindow();
         void ClearHistory();
     }
