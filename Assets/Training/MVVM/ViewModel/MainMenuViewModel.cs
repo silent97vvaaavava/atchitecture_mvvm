@@ -13,7 +13,7 @@ namespace Training.MVVM.ViewModel
     {
         [Inherits(typeof(IExitableState))]
         private Type _stateToGo;
-
+        private SaveModel _saveModel;
         private readonly MainMenuModel _model;
         private readonly CurrencyModel _currencyModel;
         protected override Type Window => typeof(MainMenuView);
@@ -21,11 +21,14 @@ namespace Training.MVVM.ViewModel
         public event Action<string> OnCoinsChanged;
         public event Action<string> OnCrystalsChanged;
         
-        public MainMenuViewModel(IWindowFsm windowFsm, MainMenuModel model, CurrencyModel currencyModel) : base(windowFsm)
+        public MainMenuViewModel(IWindowFsm windowFsm, MainMenuModel model, CurrencyModel currencyModel, SaveModel saveModel) : base(windowFsm)
         {
             _stateToGo = typeof(GameplayState);
+
             _model = model;
             _currencyModel = currencyModel;
+            _saveModel = saveModel;
+
             _currencyModel.OnCoinsChanged += IndicateCoinsChanging;
             _currencyModel.OnCrystalsChanged += IndicateCrystalsChanging;
         }
@@ -73,6 +76,18 @@ namespace Training.MVVM.ViewModel
         public override void InvokeClose()
         {
             //_windowFsm.CloseWindow(Window); 
+        }
+
+        private void LoadData()
+        {
+            var saveData = _saveModel.Load();
+            _currencyModel.LoadData(saveData);
+        }
+
+        private void SaveData()
+        {
+            var saveData = _currencyModel.GetSaveData();
+            _saveModel.Save(saveData);
         }
     }
 }

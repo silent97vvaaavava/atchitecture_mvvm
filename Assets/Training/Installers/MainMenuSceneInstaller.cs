@@ -1,5 +1,5 @@
 using Core.MVVM.WindowFsm;
-using System;
+using Cysharp.Threading.Tasks;
 using Training.Domain.Factories;
 using Training.Domain.Products;
 using Training.Domain.Providers;
@@ -8,6 +8,7 @@ using Training.MVVM.View;
 using Training.MVVM.ViewModel;
 using Training.MVVM.WindowFsm;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Zenject;
 
 namespace Training.Installers
@@ -15,7 +16,7 @@ namespace Training.Installers
     public class MainMenuSceneInstaller : MonoInstaller
     {
         [Inject] private WindowFsmProvider _fsmProvider;
-        [SerializeField] private ProductView _productPrefab;
+        public AssetReference productPrefabReference;
 
         public override void InstallBindings()
         {
@@ -29,23 +30,24 @@ namespace Training.Installers
                 .NonLazy();
 
             Container
+               .BindInterfacesAndSelfTo<SaveModel>()
+               .AsSingle()
+               .NonLazy();
+
+            Container
                 .BindInterfacesAndSelfTo<CurrencyModel>()
                 .AsSingle()
                 .NonLazy();
 
-            BindShop();
+            BindShop().Forget();
 
             BindSettings();
-           
+
             BindWindowFsm();
         }
 
         private void BindSettings()
         {
-            //Container
-            //    .BindInterfacesAndSelfTo<SettingsModel>()
-            //    .AsSingle()
-            //    .NonLazy();
             Container
                 .BindInterfacesAndSelfTo<SettingsViewModel>()
                 .AsSingle()
@@ -58,10 +60,9 @@ namespace Training.Installers
 
             localWindowFsm.fsmNumber = 1;
 
-            //Not good
             localWindowFsm.Set<MainMenuView>();
             localWindowFsm.Set<SettingsView>();
-            localWindowFsm.Set<ShopView>(); 
+            localWindowFsm.Set<ShopView>();
 
             Container
                 .Bind<IWindowFsm>()
@@ -72,41 +73,26 @@ namespace Training.Installers
             _fsmProvider.Set(localWindowFsm);
         }
 
-        private void BindShop()
+        private async UniTaskVoid BindShop()
         {
-            Container
-                .BindInterfacesAndSelfTo<ProductViewFactory>()
+            var handle = Addressables.LoadAssetAsync<GameObject>(productPrefabReference);
+            var productPrefab = await handle.Task;
+            var productViewComponent = productPrefab.GetComponent<ProductView>();
+
+            Container.BindInterfacesAndSelfTo<ProductViewFactory>()
                 .AsSingle()
-                .WithArguments(_productPrefab)
+                .WithArguments(productViewComponent)
                 .NonLazy();
 
             Container
                 .BindInterfacesAndSelfTo<ShopModel>()
                 .AsSingle()
                 .NonLazy();
+
             Container
                 .BindInterfacesAndSelfTo<ShopViewModel>()
                 .AsSingle()
                 .NonLazy();
-           }
-
-        //private void BindProviders()
-        //{
-        //    Container
-        //        .BindInterfacesAndSelfTo<ViewModelFactory>()
-        //        .FromNew()
-        //        .AsSingle()
-        //    .NonLazy();
-
-        //    var provider = Container
-        //        .Instantiate<ViewModelProvider>();
-        //    Container
-        //        .BindInterfacesAndSelfTo<ViewModelProvider>()
-        //        .FromInstance(provider)
-        //        .AsSingle()
-        //        .NonLazy();
-
-        //    provider.Set<MainMenuViewModel>();
-        //}
+        }
     }
 }

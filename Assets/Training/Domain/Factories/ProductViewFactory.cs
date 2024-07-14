@@ -13,11 +13,11 @@ namespace Training.Domain.Factories
         {
             _diContainer = diContainer;
             _productPrefab = productPrefab;
+            Debug.Log("PREFAB IS - " + _productPrefab);
         }
 
         public ProductView Create(Transform parent)
         {
-            Debug.Log("PREFAB IS - " + _productPrefab);
             return _diContainer.InstantiatePrefabForComponent<ProductView>(_productPrefab, parent);
         }
     }

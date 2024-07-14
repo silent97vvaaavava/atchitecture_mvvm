@@ -2,6 +2,7 @@
   "dependencies": {
     "com.solidalloy.type-references": "2.16.0",
     "com.unity.adaptiveperformance": "4.0.1",
+    "com.unity.addressables": "1.21.21",
     "com.unity.collab-proxy": "2.2.0",
     "com.unity.feature.2d": "2.0.0",
     "com.unity.feature.mobile": "1.0.0",

@@ -34,5 +34,20 @@ namespace Training.MVVM.Model
         public void AddCrystals(int amount) => CurrentCrystals += amount;
         public void SubtractCoins(int amount) => CurrentCoins -= amount;
         public void SubtractCrystals(int amount) => CurrentCrystals -= amount;
+
+        public void LoadData(SaveData data)
+        {
+            CurrentCoins = data.Coins;
+            CurrentCrystals = data.Crystals;
+        }
+
+        public SaveData GetSaveData()
+        {
+            return new SaveData
+            {
+                Coins = CurrentCoins,
+                Crystals = CurrentCrystals
+            };
+        }
     }
 }
