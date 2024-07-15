@@ -46,14 +46,6 @@ namespace Training.Installers
             BindWindowFsm();
         }
 
-        private void BindSettings()
-        {
-            Container
-                .BindInterfacesAndSelfTo<SettingsViewModel>()
-                .AsSingle()
-                .NonLazy();
-        }
-
         private void BindWindowFsm()
         {
             var localWindowFsm = Container.Instantiate<WindowFsm>();
@@ -71,6 +63,20 @@ namespace Training.Installers
                 .NonLazy();
 
             _fsmProvider.Set(localWindowFsm);
+        }
+
+
+        private void BindSettings()
+        {
+            Container
+              .BindInterfacesAndSelfTo<SettingsModel>()
+              .AsSingle()
+              .NonLazy();
+
+            Container
+                .BindInterfacesAndSelfTo<SettingsViewModel>()
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindShop()

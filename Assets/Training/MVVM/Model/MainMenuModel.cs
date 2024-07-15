@@ -14,7 +14,7 @@ namespace Training.MVVM.Model
             _gameFsm = gameFsm;
         }
 
-        public void SwitchToState(Type state) //Go to next state
+        public void SwitchToState(Type state)
         {
             _gameFsm.Enter(state);
         }

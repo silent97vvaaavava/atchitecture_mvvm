@@ -2,6 +2,7 @@
 using Core.MVVM.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Training.MVVM.Model;
 
 public class ShopModel : IModel
@@ -14,15 +15,13 @@ public class ShopModel : IModel
     public ShopModel(CurrencyModel currencyModel)
     {
         _currencyModel = currencyModel;
-        _products = new List<Product>
-        {
-            new Product("Item 1", 10, false),
-            new Product("Item 2", 20, true),
-            new Product("Item 3", 30, false)
-        };
+        _products = new();
     }
 
-    public List<Product> GetProducts() => _products;
+    public List<Product> GetProducts()
+    {
+        return _products;
+    }
 
     public void BuyProduct(Product product)
     {
@@ -40,9 +39,23 @@ public class ShopModel : IModel
         }
     }
 
-    public void UpdateProducts()
+    public void UpdateProducts() => OnProductsUpdated?.Invoke();
+
+    public SaveData ReturnCurrenData()
     {
-        UnityEngine.Debug.Log("UpdateProducts action had been invoked in ShopModel");
-        OnProductsUpdated?.Invoke();
+        return new SaveData
+        {
+            Products = _products,
+            Coins = _currencyModel.CurrentCoins,
+            Crystals = _currencyModel.CurrentCrystals
+        };
+    }
+
+    public void LoadData(SaveData data)
+    {
+        _products.Clear();
+        _products.AddRange(data.Products);
+        _currencyModel.LoadData(data);
+        UpdateProducts();
     }
 }

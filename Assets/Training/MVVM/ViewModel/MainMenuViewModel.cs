@@ -37,8 +37,20 @@ namespace Training.MVVM.ViewModel
         protected override void HandleOpenedWindow(Type uiWindow)
         {
             base.HandleOpenedWindow(uiWindow);
+            if (uiWindow != Window) return;
+
+            LoadData();
+
             IndicateCoinsChanging(_currencyModel.CurrentCoins);
             IndicateCrystalsChanging(_currencyModel.CurrentCrystals);
+        }
+
+        protected override void HandleClosedWindow(Type uiWindow)
+        {
+            base.HandleClosedWindow(uiWindow);
+            if (uiWindow != Window) return;
+
+            SaveData();
         }
 
         private void IndicateCoinsChanging(int amount)    // Or rename to HandleCoinsChanged?
@@ -62,19 +74,16 @@ namespace Training.MVVM.ViewModel
             _windowFsm.OpenOneWindow(typeof(SettingsView));
         }
 
-        public void SwitchToState()  // Rename to OpenNewState || SwitchToState
+        public void SwitchToState()
         {
             _model.SwitchToState(_stateToGo);
         }
 
         public void InvokeOpen(Type type) { }
 
-        public override void InvokeOpen()   //Rename to OnOpened 
-        {
-            
-        }   
+        public override void InvokeOpen() { }   
         
-        public override void InvokeClose()  //Rename to CloseWindow
+        public override void InvokeClose() 
         {
             //_windowFsm.CloseWindow(Window); 
         }

@@ -278,6 +278,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9703a8bb1b644b57ade7fc61f9ac152f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnAnimationShow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAnimationHide:
+    m_PersistentCalls:
+      m_Calls: []
   _closeButton: {fileID: 6739947612801850503}
   _soundToggle: {fileID: 8820727232954071518}
   _musicToggle: {fileID: 3609941429467553824}

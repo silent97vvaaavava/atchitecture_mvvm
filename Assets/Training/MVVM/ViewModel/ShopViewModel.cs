@@ -4,7 +4,6 @@ using Core.MVVM.WindowFsm;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Training.MVVM.Model;
 using Training.MVVM.View;
 
 namespace Training.MVVM.ViewModel
@@ -12,34 +11,38 @@ namespace Training.MVVM.ViewModel
     public class ShopViewModel : BaseViewModel
     {
         private readonly ShopModel _model;
-        private readonly CurrencyModel _currencyModel;
+        private readonly SaveModel _saveModel;
         protected override Type Window => typeof(ShopView);
 
         public event Action OnProductsUpdated;
 
-        public ShopViewModel(IWindowFsm windowFsm, ShopModel shopModel) : base(windowFsm)
+        public ShopViewModel(IWindowFsm windowFsm, ShopModel shopModel, SaveModel saveModel) : base(windowFsm)
         {
             _model = shopModel;
+            _saveModel = saveModel;
 
             _model.OnProductsUpdated += UpdateViewProducts;
         }
 
         public List<Product> GetProducts() => _model.GetProducts();
 
-        //TODO Переместить в InvokeOpen. Так делать нельзя, ведь этот метод вызывается на открытие любого окна
         protected override void HandleOpenedWindow(Type uiWindow)   
         {
             base.HandleOpenedWindow(uiWindow);
-            UpdateViewProducts();
-            UnityEngine.Debug.Log("HANDLEOPENEDWINDOW");
+            if (uiWindow != Window) return;
+
+            LoadData();
         }
 
-
-
-        private void UpdateViewProducts()
+        protected override void HandleClosedWindow(Type uiWindow)
         {
-            OnProductsUpdated?.Invoke();
+            base.HandleClosedWindow(uiWindow);
+            if (uiWindow != Window) return;
+
+            SaveData();
         }
+
+        private void UpdateViewProducts() => OnProductsUpdated?.Invoke();
 
         public void BuyProduct(Product product) => _model.BuyProduct(product);
 
@@ -48,6 +51,18 @@ namespace Training.MVVM.ViewModel
         public override void InvokeClose()
         {
             _windowFsm.CloseWindow(Window);
+        }
+
+        private void LoadData()
+        {
+            var saveData = _saveModel.Load();
+            _model.LoadData(saveData);
+        }
+
+        private void SaveData()
+        {
+            var saveData = _model.ReturnCurrenData();
+            _saveModel.Save(saveData);
         }
     }
 }

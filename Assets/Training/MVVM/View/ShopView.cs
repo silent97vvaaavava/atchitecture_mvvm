@@ -24,7 +24,11 @@ namespace Training.MVVM.View
             base.Construct(viewModel);
 
             _productViewFactory = productViewFactory;
+        }
 
+        public override void Show()
+        {
+            base.Show();
             _viewModel.OnProductsUpdated += UpdateProductsAsync;
             _closeButton.onClick.AddListener(OnClosedButtonClicked);
         }
@@ -46,6 +50,12 @@ namespace Training.MVVM.View
         private void OnClosedButtonClicked()
         {
             _viewModel.InvokeClose();
+        }
+        public override void Hide()
+        {
+            base.Hide();
+            _viewModel.OnProductsUpdated -= UpdateProductsAsync;
+            _closeButton.onClick.RemoveListener(OnClosedButtonClicked);
         }
     }
 }

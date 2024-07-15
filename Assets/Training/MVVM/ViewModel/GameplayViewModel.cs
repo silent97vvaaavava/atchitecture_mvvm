@@ -28,19 +28,10 @@ namespace Training.MVVM.ViewModel
             _model.SwitchToState(_stateToGo);
         }
 
-        public void InvokeOpen(Type stateType)
-        {
+        public void InvokeOpen(Type stateType) { }
 
-        }
+        public override void InvokeOpen() { }
 
-        public override void InvokeOpen()
-        {
-        }
-
-        public override void InvokeClose()
-        {
-            //_windowFsm.CloseCurrentWindow();
-            //_windowFsm.CloseWindow(Window); 
-        }
+        public override void InvokeClose() { }
     }
 }

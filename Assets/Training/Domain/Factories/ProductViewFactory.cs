@@ -16,7 +16,6 @@ namespace Training.Domain.Factories
         {
             _diContainer = diContainer;
             _productViewAssetReference = productPrefab;
-            Debug.Log("PREFAB IS - " + _productViewAssetReference);
         }
 
         public async UniTask<ProductView> Create(Transform parent)

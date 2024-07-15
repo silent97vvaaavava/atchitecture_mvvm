@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
 
 namespace Assets.Training.Domain.Products
 {
-    public class BaseProduct : IProduct
+    [Serializable]
+    public class BaseProduct
     {
-        public string Name { get; private set; }
-        public int Price { get; private set; }
-        public bool IsCoinProduct { get; private set; }
+        public string Name;
+        public int Price;
+        public bool IsCoinProduct;
 
         public BaseProduct(string name, int price, bool isCoinProduct)
         {
