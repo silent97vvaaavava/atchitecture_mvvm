@@ -16,7 +16,7 @@ namespace Training.Installers
     public class MainMenuSceneInstaller : MonoInstaller
     {
         [Inject] private WindowFsmProvider _fsmProvider;
-        public AssetReference productPrefabReference;
+        private AssetReferenceGameObject productViewPrefabReference = new("ProductView");
 
         public override void InstallBindings()
         {
@@ -39,7 +39,7 @@ namespace Training.Installers
                 .AsSingle()
                 .NonLazy();
 
-            BindShop().Forget();
+            BindShop();
 
             BindSettings();
 
@@ -73,15 +73,11 @@ namespace Training.Installers
             _fsmProvider.Set(localWindowFsm);
         }
 
-        private async UniTaskVoid BindShop()
-        {
-            var handle = Addressables.LoadAssetAsync<GameObject>(productPrefabReference);
-            var productPrefab = await handle.Task;
-            var productViewComponent = productPrefab.GetComponent<ProductView>();
-
+        private void BindShop()
+        {               
             Container.BindInterfacesAndSelfTo<ProductViewFactory>()
                 .AsSingle()
-                .WithArguments(productViewComponent)
+                .WithArguments(productViewPrefabReference)
                 .NonLazy();
 
             Container

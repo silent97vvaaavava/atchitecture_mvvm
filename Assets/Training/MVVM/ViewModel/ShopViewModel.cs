@@ -3,6 +3,7 @@ using Core.MVVM.ViewModel;
 using Core.MVVM.WindowFsm;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Training.MVVM.Model;
 using Training.MVVM.View;
 
@@ -25,11 +26,15 @@ namespace Training.MVVM.ViewModel
 
         public List<Product> GetProducts() => _model.GetProducts();
 
-        protected override void HandleOpenedWindow(Type uiWindow)
+        //TODO Переместить в InvokeOpen. Так делать нельзя, ведь этот метод вызывается на открытие любого окна
+        protected override void HandleOpenedWindow(Type uiWindow)   
         {
             base.HandleOpenedWindow(uiWindow);
-            UpdateViewProducts();            //TODO Здесь проблема
+            UpdateViewProducts();
+            UnityEngine.Debug.Log("HANDLEOPENEDWINDOW");
         }
+
+
 
         private void UpdateViewProducts()
         {

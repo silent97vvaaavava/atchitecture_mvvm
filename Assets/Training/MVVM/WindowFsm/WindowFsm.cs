@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Core.MVVM.View;
 using Core.MVVM.WindowFsm;
-using UnityEngine;
 
 namespace Training.MVVM.WindowFsm
 {
@@ -36,16 +35,6 @@ namespace Training.MVVM.WindowFsm
             _windows.Add(typeof(TView), window);
         }
 
-        //private string DebugDictionary(Dictionary<Type, IWindow> windows)
-        //{
-        //    string message = "";
-        //    foreach (var key in windows.Keys)
-        //    {
-        //        message += key.ToString();
-        //        message += " ";
-        //    }
-        //    return message;
-        //}
         public void OpenWindow(Type windowType)
         {
             if (_currentWindow == _windows[windowType])
@@ -55,8 +44,6 @@ namespace Training.MVVM.WindowFsm
             _windowHistory.Push(_windows[windowType]);
             _currentWindow = _windowHistory.Peek();
             _currentWindow?.Open();
-
-            //Debug.Log($"Открываем окно типa: {windowType.Name}. В списке windowFsm: {DebugDictionary(_windows)}. Номер стейт машины - {fsmNumber}");
         }
 
         public void OpenOneWindow(Type window) => _windows[window]?.Open();

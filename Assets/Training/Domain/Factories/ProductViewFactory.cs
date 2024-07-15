@@ -1,5 +1,8 @@
-﻿using Training.Domain.Products;
+﻿using Cysharp.Threading.Tasks;
+using Training.Domain.Products;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using Zenject;
 
 namespace Training.Domain.Factories
@@ -7,23 +10,31 @@ namespace Training.Domain.Factories
     public class ProductViewFactory : IProductViewFactory   
     {
         private readonly DiContainer _diContainer;
-        private readonly ProductView _productPrefab;    
+        private readonly AssetReferenceGameObject _productViewAssetReference;    
 
-        public ProductViewFactory(DiContainer diContainer, ProductView productPrefab)
+        public ProductViewFactory(DiContainer diContainer, AssetReferenceGameObject productPrefab)
         {
             _diContainer = diContainer;
-            _productPrefab = productPrefab;
-            Debug.Log("PREFAB IS - " + _productPrefab);
+            _productViewAssetReference = productPrefab;
+            Debug.Log("PREFAB IS - " + _productViewAssetReference);
         }
 
-        public ProductView Create(Transform parent)
+        public async UniTask<ProductView> Create(Transform parent)
         {
-            return _diContainer.InstantiatePrefabForComponent<ProductView>(_productPrefab, parent);
+            //var prefab = await _productViewAssetReference.LoadAssetAsync().Task; Эстетика Adressables(оно не работает, счётчик ссылок встроен в штуку ниже)
+            //AsyncOperationHandle<GameObject> handle = _productViewAssetReference.LoadAssetAsync(); Эстетика 2.0
+            AsyncOperationHandle<GameObject> handle = Addressables.LoadAssetAsync<GameObject>(_productViewAssetReference);
+
+            GameObject prefab = await handle.Task;
+
+            Addressables.Release(handle); 
+
+            return _diContainer.InstantiatePrefabForComponent<ProductView>(prefab, parent);
         }
     }
 
     public interface IProductViewFactory
     {
-        ProductView Create(Transform parent);
+        UniTask<ProductView> Create(Transform parent);
     }
 }

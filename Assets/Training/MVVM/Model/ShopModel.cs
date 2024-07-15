@@ -1,9 +1,7 @@
-﻿using Assets.Training;
-using Assets.Training.Domain;
+﻿using Assets.Training.Domain;
 using Core.MVVM.Model;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Training.MVVM.Model;
 
 public class ShopModel : IModel

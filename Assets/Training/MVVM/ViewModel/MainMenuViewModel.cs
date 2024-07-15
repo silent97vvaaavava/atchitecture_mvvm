@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using Core.Infrastructure.GameFsm;
 using Core.MVVM.ViewModel;
 using Core.MVVM.WindowFsm;
@@ -68,12 +69,12 @@ namespace Training.MVVM.ViewModel
 
         public void InvokeOpen(Type type) { }
 
-        public override void InvokeOpen()
+        public override void InvokeOpen()   //Rename to OnOpened 
         {
             
         }   
         
-        public override void InvokeClose()
+        public override void InvokeClose()  //Rename to CloseWindow
         {
             //_windowFsm.CloseWindow(Window); 
         }

@@ -1,4 +1,6 @@
 ﻿using Core.MVVM.View;
+using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 using Training.Domain.Factories;
 using Training.MVVM.ViewModel;
 using UnityEngine;
@@ -23,11 +25,11 @@ namespace Training.MVVM.View
 
             _productViewFactory = productViewFactory;
 
-            _viewModel.OnProductsUpdated += UpdateProducts;
+            _viewModel.OnProductsUpdated += UpdateProductsAsync;
             _closeButton.onClick.AddListener(OnClosedButtonClicked);
         }
 
-        private void UpdateProducts()
+        private async void UpdateProductsAsync()
         {
             foreach (Transform child in _productContainer)
                 Destroy(child.gameObject);
@@ -35,7 +37,7 @@ namespace Training.MVVM.View
             var products = _viewModel.GetProducts();
             foreach (var product in products)
             {
-                var productView = _productViewFactory.Create(_productContainer);
+                var productView = await _productViewFactory.Create(_productContainer);
                 productView.SetProduct(product);
                 productView.OnBuy += () => _viewModel.BuyProduct(product);
             }

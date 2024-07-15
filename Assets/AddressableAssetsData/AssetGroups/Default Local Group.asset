@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: 54993311732b452429631148f1670cb9
   m_SerializeEntries:
   - m_GUID: cb42ceda41417f343b7ab52be1d91f73
-    m_Address: Assets/AddressableAssets/ProductView.prefab
+    m_Address: ProductView
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
