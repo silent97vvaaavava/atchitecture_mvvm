@@ -471,12 +471,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1088089609}
     - target: {fileID: 5967572092960605754, guid: c2ecfd30b8046374ab542701daee78ca, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967572092960605754, guid: c2ecfd30b8046374ab542701daee78ca, type: 3}
       propertyPath: m_RenderMode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5967572092960605754, guid: c2ecfd30b8046374ab542701daee78ca, type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5967572092960605754, guid: c2ecfd30b8046374ab542701daee78ca, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
@@ -850,6 +854,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1088089609}
+    - target: {fileID: 5967572092960605754, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5967572092960605754, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
       propertyPath: m_SortingOrder
       value: 3

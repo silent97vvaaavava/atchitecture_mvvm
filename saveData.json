@@ -1,23 +1,7 @@
 {
-    "Coins": 100,
-    "Crystals": 50,
-    "Products": [
-        {
-            "Name": "Item 1",
-            "Price": 10,
-            "IsCoinProduct": true
-        },
-        {
-            "Name": "Item 2",
-            "Price": 20,
-            "IsCoinProduct": true
-        },
-        {
-            "Name": "Item 3",
-            "Price": 30,
-            "IsCoinProduct": false
-        }
-    ],
+    "Coins": 70,
+    "Crystals": 20,
+    "Products": [],
     "SettingsData": {
         "Sound": true,
         "Music": true
