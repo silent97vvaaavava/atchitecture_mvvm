@@ -16,5 +16,11 @@ namespace Core.MVVM.View
             _viewModel.InvokedOpen += Show;
             _viewModel.InvokedClose += Hide; 
         }
+
+        private void OnDestroy()
+        {
+            _viewModel.InvokedOpen -= Show;
+            _viewModel.InvokedClose -= Hide;
+        }
     }
 }
