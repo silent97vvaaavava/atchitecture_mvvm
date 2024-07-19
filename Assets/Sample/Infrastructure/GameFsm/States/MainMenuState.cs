@@ -1,45 +1,35 @@
-using System.Collections;
-using Core.Domain.Providers;
+using System.Threading.Tasks;
 using Core.Infrastructure.GameFsm;
 using Core.Infrastructure.GameFsm.States;
-using Core.MVVM.WindowFsm;
+using Core.MVVM.Windows;
 using Cysharp.Threading.Tasks;
 using Sample.MVVM.View;
 using Sample.Services;
 
 namespace Sample.Infrastructure.GameFsm.States
 {
-    public class MainMenuState : AbstractState
+    public class MainMenuState : AbstractState, IAsyncState
     {
         private readonly SceneLoader _sceneLoader;
-        private readonly IWindowFsmProvider _windowFsmProvider;
         private IWindowFsm _windowFsm;
         
         private bool _isCompleted;
         
-        public MainMenuState(IGameFsm gameFsm, SceneLoader sceneLoader, IWindowFsmProvider windowFsmProvider) : base(gameFsm)
+        public MainMenuState(IGameStateMachine gameFsm, SceneLoader sceneLoader, IWindowFsm windowFsm) : base(gameFsm)
         {
             _sceneLoader = sceneLoader;
-            _windowFsmProvider = windowFsmProvider;
+            _windowFsm = windowFsm;
         }
         
-        public override async void Enter()
-        {
-            base.Enter();   
-            await _sceneLoader.LoadScene("MainMenuScene");
-            _windowFsm = _windowFsmProvider.Local;
-            _windowFsm.OpenWindow(typeof(MainMenuView));
-        }
-
-        public override IEnumerator Execute()
-        {
-            yield return null;
-        }
-
-        public override void Exit()
+        public override void OnExit()
         {
             _windowFsm.CloseWindow(typeof(MainMenuView));
-            base.Exit();
+        }
+
+        public async Task OnEnterAsync()
+        {
+            await _sceneLoader.LoadScene("MainMenuScene");
+            _windowFsm.OpenWindow(typeof(MainMenuView));
         }
     }
 }

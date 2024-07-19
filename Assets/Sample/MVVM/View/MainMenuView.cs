@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Sample.MVVM.View
 {
-    public class MainMenuView : BaseView<MainMenuViewModel>
+    public class MainMenuView : AbstractPayloadView<MainMenuViewModel>
     {
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _settingsButton;

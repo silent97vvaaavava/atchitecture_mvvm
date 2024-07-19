@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Sample.MVVM.View
 {
-    public class SettingsView : BaseView<SettingsViewModel>
+    public class SettingsView : AbstractPayloadView<SettingsViewModel>
     {
         private const string SOUND = "Sound";
         private const string MUSIC = "MUSIC";

@@ -1,18 +1,13 @@
-using Core.Infrastructure.GameFsm;
 using Core.MVVM.View;
 using Sample.MVVM.ViewModel;
-using TypeReferences;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
 namespace Sample.MVVM.View
 {
-    public class GameplayView : BaseView<GameplayViewModel>
+    public class GameplayView : AbstractPayloadView<GameplayViewModel>
     {
-        [SerializeField] 
-        [Inherits(typeof(IExitableState))]
-        private TypeReference _stateToGo;
         [SerializeField] private Button _backButton;
         
         [Inject]

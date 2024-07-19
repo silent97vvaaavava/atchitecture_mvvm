@@ -1,42 +1,33 @@
-using System.Collections;
-using Core.Domain.Providers;
+using System.Threading.Tasks;
 using Core.Infrastructure.GameFsm;
 using Core.Infrastructure.GameFsm.States;
-using Core.MVVM.WindowFsm;
+using Core.MVVM.Windows;
 using Cysharp.Threading.Tasks;
 using Sample.MVVM.View;
 using Sample.Services;
 
 namespace Sample.Infrastructure.GameFsm.States
 {
-    public class GameplayState : AbstractState
+    public class GameplayState : AbstractState, IAsyncState
     {
         private readonly SceneLoader _sceneService;
-        private readonly IWindowFsmProvider _windowFsmProvider;
         private IWindowFsm _windowFsm;
 
-        public GameplayState(IGameFsm gameFsm, SceneLoader sceneService, IWindowFsmProvider windowFsmProvider) : base(gameFsm)
+        public GameplayState(IGameStateMachine gameFsm, SceneLoader sceneService, IWindowFsm windowFsm) : base(gameFsm)
         {
             _sceneService = sceneService;
-            _windowFsmProvider = windowFsmProvider;
+            _windowFsm = windowFsm;
         }
 
-        public override async void Enter()
+        public override void OnExit()
         {
-            base.Enter();
+            
+        }
+
+        public async Task OnEnterAsync()
+        {
             await _sceneService.LoadScene("GameplayScene");
-            _windowFsm = _windowFsmProvider.Local;
             _windowFsm.OpenWindow(typeof(GameplayView));
-        }
-
-        public override IEnumerator Execute()
-        {
-            yield return null;
-        }
-
-        public override void Exit()
-        {
-            base.Exit();
         }
     }
 }

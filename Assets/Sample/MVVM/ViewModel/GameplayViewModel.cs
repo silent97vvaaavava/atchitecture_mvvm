@@ -1,17 +1,14 @@
 using System;
-using Core.Infrastructure.GameFsm;
 using Core.MVVM.ViewModel;
-using Core.MVVM.WindowFsm;
+using Core.MVVM.Windows;
 using Sample.Infrastructure.GameFsm.States;
 using Sample.MVVM.Model;
 using Sample.MVVM.View;
-using TypeReferences;
 
 namespace Sample.MVVM.ViewModel
 {
-    public class GameplayViewModel : BaseViewModel   
+    public class GameplayViewModel : AbstractViewModel   
     {
-        [Inherits(typeof(IExitableState))]
         private Type _stateToGo;
 
         private readonly GameplayModel _model;

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Core.MVVM.View;
-using Core.MVVM.WindowFsm;
+using Core.MVVM.Windows;
 
 namespace Sample.MVVM.WindowFsm
 {
@@ -35,6 +35,16 @@ namespace Sample.MVVM.WindowFsm
             _windows.Add(typeof(TView), window);
         }
 
+        public void CleanUp()
+        {
+            _windows.Clear();
+        }
+
+        public void OpenWindow(Type window, bool inHistory)
+        {
+            
+        }
+
         public void OpenWindow(Type windowType)
         {
             if (_currentWindow == _windows[windowType])
@@ -52,6 +62,11 @@ namespace Sample.MVVM.WindowFsm
         {
             _windows.TryGetValue(type, out var window);
             window?.Close();
+        }
+
+        public void CloseWindow()
+        {
+            
         }
 
         public void CloseCurrentWindow()

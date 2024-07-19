@@ -1,9 +1,8 @@
-using Sample.Services;
 using Core.Infrastructure;
 using Sample.Domain.Factories;
-using Sample.Domain.Providers;
 using Sample.Infrastructure.GameFsm;
 using Zenject;
+using SceneLoader = Core.Infrastructure.SceneLoader;
 
 namespace Sample.Installers
 {
@@ -14,8 +13,6 @@ namespace Sample.Installers
             BindServices();
 
             BindFactories();
-
-            BindProviders();
 
             Container
                 .BindInterfacesAndSelfTo<GameStateMachine>()
@@ -43,15 +40,6 @@ namespace Sample.Installers
             Container
                 .BindInterfacesAndSelfTo<StatesFactory>()
                 .AsSingle()
-                .NonLazy();
-        }
-
-        private void BindProviders()
-        {
-            Container
-                .BindInterfacesAndSelfTo<WindowFsmProvider>()
-                .AsSingle()
-                .WithArguments(Container)
                 .NonLazy();
         }
     }

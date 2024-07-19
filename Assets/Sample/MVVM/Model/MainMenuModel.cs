@@ -6,9 +6,9 @@ namespace Sample.MVVM.Model
 {
     public class MainMenuModel : IModel
     {
-        private readonly IGameFsm _gameFsm;
+        private readonly IGameStateMachine _gameFsm;
 
-        public MainMenuModel(IGameFsm gameFsm) 
+        public MainMenuModel(IGameStateMachine gameFsm) 
         {
             _gameFsm = gameFsm;
         }

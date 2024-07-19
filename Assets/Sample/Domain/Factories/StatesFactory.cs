@@ -13,7 +13,7 @@ namespace Sample.Domain.Factories
             _diContainer = diContainer;
         }
 
-        public TState Create<TState>() where TState : class, IState
+        public TState Create<TState>() where TState : class, IExitableState
         {
             return _diContainer.Instantiate<TState>();
         }
