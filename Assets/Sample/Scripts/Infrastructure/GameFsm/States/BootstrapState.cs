@@ -5,7 +5,9 @@ namespace Sample.Infrastructure.GameFsm.States
 {
     public class BootstrapState : AbstractState, IState
     {
-        public BootstrapState(IGameStateMachine gameStateMachine) : base(gameStateMachine) { }
+        public BootstrapState(IGameStateMachine gameStateMachine) : base(gameStateMachine)
+        {
+        }
 
         public void OnEnter()
         {

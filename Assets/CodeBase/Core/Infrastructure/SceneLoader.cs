@@ -29,7 +29,7 @@ namespace Core.Infrastructure
             {
                 yield return null;
             }
-
+            
             onLoaded?.Invoke();
         }
     }

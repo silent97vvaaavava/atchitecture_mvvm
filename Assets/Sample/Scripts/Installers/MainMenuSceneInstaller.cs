@@ -12,11 +12,6 @@ namespace Training.Installers
                 .AsSingle()
                 .NonLazy();
 
-            BindSettings();
-        }
-
-        private void BindSettings()
-        {
             Container
                 .BindInterfacesAndSelfTo<SettingsViewModel>()
                 .AsSingle()

@@ -8,15 +8,15 @@ namespace Sample.Infrastructure.GameFsm.States
 {
     public class MainMenuState : AbstractState, IState
     {
+        private const string Scene = "MainMenuScene";
         private readonly SceneLoader _sceneLoader;
-        private IWindowFsm _windowFsm;
-        private IWindowResolve _windowResolve;
-        private bool _isCompleted;
+        private readonly IWindowFsm _windowFsm;
+        private readonly IWindowResolve _windowResolve;
+
         
         public MainMenuState(IGameStateMachine gameFsm,
             SceneLoader sceneLoader,
-            IWindowFsm windowFsm,
-            IWindowResolve windowResolve) : base(gameFsm)
+            IWindowFsm windowFsm, IWindowResolve windowResolve) : base(gameFsm)
         {
             _sceneLoader = sceneLoader;
             _windowFsm = windowFsm;
@@ -25,20 +25,21 @@ namespace Sample.Infrastructure.GameFsm.States
         
         public override void OnExit()
         {
-            _windowFsm.CloseWindow(typeof(MainMenuView));
+            _windowFsm.ClearHistory();
+            _windowResolve.CleanUp();
         }
 
         public void OnEnter()
         {
-            _windowFsm.ClearHistory();
-            _windowResolve.CleanUp();
-            _windowResolve.Set<MainMenuView>();
-            _windowResolve.Set<SettingsView>();
             
-            _sceneLoader.Load("MainMenuScene", OnLoaded);
+            _sceneLoader.Load(Scene, OnLoaded);
         }
 
-        private void OnLoaded() 
-            => _windowFsm.OpenWindow(typeof(MainMenuView));
+        private void OnLoaded()
+        {
+            _windowResolve.Set<MainMenuView>();
+            _windowResolve.Set<SettingsView>();
+            _windowFsm.OpenWindow(typeof(MainMenuView));
+        }
     }
 }
