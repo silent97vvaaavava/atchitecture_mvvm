@@ -15,7 +15,10 @@ namespace Sample.MVVM.View
         protected override void Construct(MainMenuViewModel viewModel)
         {
             base.Construct(viewModel);
+        }
 
+        private void Awake()
+        {
             _playButton.onClick.AddListener(OnPlayButtonClicked);
             _settingsButton.onClick.AddListener(OnSettingsButtonClicked);
         }
