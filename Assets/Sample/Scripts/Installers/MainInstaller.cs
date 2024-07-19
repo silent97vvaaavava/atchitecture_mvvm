@@ -1,4 +1,5 @@
 using Core.Infrastructure;
+using Core.MVVM.Windows;
 using Sample.Domain.Factories;
 using Sample.Infrastructure.GameFsm;
 using Sample.MVVM.Model;
@@ -10,6 +11,11 @@ namespace Sample.Installers
     {
         public override void InstallBindings()
         {
+            Container
+                .BindInterfacesTo<WindowFsm>()
+                .AsSingle()
+                .NonLazy();
+            
             BindServices();
 
             BindFactories();

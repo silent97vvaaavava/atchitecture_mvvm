@@ -13,9 +13,10 @@ namespace Sample.Infrastructure.GameFsm
 
         public void Initialize()
         {
+            _states.TryAdd(typeof(BootstrapState), _factory.Create<BootstrapState>());
             _states.TryAdd(typeof(MainMenuState), _factory.Create<MainMenuState>());
             _states.TryAdd(typeof(GameplayState), _factory.Create<GameplayState>());
-            EnterAsync<MainMenuState>();
+            Enter<BootstrapState>();
         }
     }
 }
