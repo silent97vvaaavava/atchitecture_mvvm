@@ -1,5 +1,4 @@
-﻿using Core.Domain.Providers;
-using Core.MVVM.ViewModel;
+﻿using Core.MVVM.ViewModel;
 using UnityEngine;
 
 namespace Core.MVVM.View
@@ -10,9 +9,9 @@ namespace Core.MVVM.View
     {
         protected TViewModel _viewModel;
         
-        protected override void Construct(IProviderGet<IViewModel> provider)
+        protected virtual void Construct(TViewModel viewModel)
         {
-            _viewModel = provider.Get<TViewModel>();
+            _viewModel = viewModel;
 
             _viewModel.InvokedOpen += Show;
             _viewModel.InvokedClose += Hide; 
