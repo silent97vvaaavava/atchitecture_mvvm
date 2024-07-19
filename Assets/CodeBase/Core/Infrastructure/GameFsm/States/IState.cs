@@ -1,19 +1,19 @@
-﻿using System.Collections;
+using System.Threading.Tasks;
 
 namespace Core.Infrastructure.GameFsm.States
 {
     public interface IState : IExitableState
     {
-        void Enter();
+        void OnEnter();
+    }
+    
+    public interface IAsyncState : IExitableState
+    {
+        Task OnEnterAsync();
+    }
 
-        IEnumerator Execute();
-
-        void AddLink(ILink link);
-        void RemoveLink(ILink link);
-        void RemoveAllLinks();
-
-        bool ValidateLinks(out IState nextState);
-        void EnableLinks();
-        void DisableLinks();
+    public interface IPayloadedState<TPayload> : IExitableState
+    {
+        void OnEnter(TPayload payload);
     }
 }

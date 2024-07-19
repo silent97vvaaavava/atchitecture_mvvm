@@ -11,7 +11,7 @@ namespace Core.Infrastructure.GameFsm
         /// </summary>
         /// <param name="nextState">The next state that this link points to</param>
         /// <returns>true: the link is open for transition</returns>
-        bool Validate(out IState nextState);
+        bool Validate(out ILinkState nextState);
         
         /// <summary>
         /// Activates the link

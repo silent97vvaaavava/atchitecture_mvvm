@@ -5,6 +5,6 @@ namespace Core.Domain.Factories
     public interface IStatesFactory
     {
         TState Create<TState>()
-            where TState : class, IState;
+            where TState : class, IExitableState;
     }
 }

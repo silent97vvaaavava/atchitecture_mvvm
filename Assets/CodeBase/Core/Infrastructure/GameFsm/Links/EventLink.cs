@@ -5,17 +5,17 @@ namespace Core.Infrastructure.GameFsm
 {
     public class EventLink : ILink, IGameEventListener
     {
-        private IState m_NextState;
+        private ILinkState m_NextState;
         private AbstractGameEvent m_GameEvent;
         private bool m_EventRaised;
 
-        public EventLink(IState nextState, AbstractGameEvent gameEvent)
+        public EventLink(ILinkState nextState, AbstractGameEvent gameEvent)
         {
             m_NextState = nextState;
             m_GameEvent = gameEvent;
         }
 
-        public bool Validate(out IState nextState)
+        public bool Validate(out ILinkState nextState)
         {
             nextState = null;
             bool result = false;

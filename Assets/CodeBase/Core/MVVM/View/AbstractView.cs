@@ -1,19 +1,14 @@
-﻿using System;
-using Core.Domain.Providers;
-using Core.MVVM.ViewModel;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Core.MVVM.View
 {
     [RequireComponent(typeof(Canvas), typeof(CanvasGroup))]
-    public abstract class BaseView<TViewModel> : MonoBehaviour, IView
-    where TViewModel : class, IViewModel
+    public abstract class AbstractView : MonoBehaviour, IView
     {
         public UnityEvent<Action> OnAnimationShow = new UnityEvent<Action>();
         public UnityEvent<Action> OnAnimationHide = new UnityEvent<Action>();
-        
-        protected TViewModel _viewModel;
         
         private Canvas _canvas;
         private CanvasGroup _canvasGroup;
@@ -38,15 +33,6 @@ namespace Core.MVVM.View
             }
         }
 
-        protected virtual void Construct(TViewModel viewModel)
-        {
-            _viewModel = viewModel;
-
-            _viewModel.InvokedOpen += Show;
-            
-            _viewModel.InvokedClose += Hide;
-        }
-
         public virtual void Show()
         {
             if(OnAnimationShow.GetPersistentEventCount() > 0)
@@ -57,7 +43,7 @@ namespace Core.MVVM.View
 
         public virtual void Hide()
         {
-            if (OnAnimationHide.GetPersistentEventCount() > 0)
+            if(OnAnimationHide.GetPersistentEventCount() > 0)
                 OnAnimationHide?.Invoke(() =>  SetActive(false));
             else 
                 SetActive(false);
