@@ -1,8 +1,8 @@
 using Core.Infrastructure;
 using Sample.Domain.Factories;
 using Sample.Infrastructure.GameFsm;
+using Sample.MVVM.Model;
 using Zenject;
-using SceneLoader = Core.Infrastructure.SceneLoader;
 
 namespace Sample.Installers
 {
@@ -14,6 +14,8 @@ namespace Sample.Installers
 
             BindFactories();
 
+            BindModels();
+
             Container
                 .BindInterfacesAndSelfTo<GameStateMachine>()
                 .FromNew()
@@ -21,11 +23,23 @@ namespace Sample.Installers
                 .NonLazy();
         }
 
+        private void BindModels()
+        {
+            Container
+                .BindInterfacesAndSelfTo<GameplayModel>()
+                .AsSingle()
+                .NonLazy();
+
+            Container
+                .BindInterfacesAndSelfTo<MainMenuModel>()
+                .AsSingle()
+                .NonLazy();
+        }
+
         private void BindServices()
         {
             Container
-                .Bind<ICoroutineRunner>()
-                .To<Coroutines>()
+                .BindInterfacesAndSelfTo<Coroutines>()
                 .AsSingle()
                 .NonLazy();
 

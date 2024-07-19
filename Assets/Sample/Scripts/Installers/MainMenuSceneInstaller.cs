@@ -1,4 +1,3 @@
-using Sample.MVVM.Model;
 using Sample.MVVM.ViewModel;
 using Zenject;
 
@@ -8,10 +7,6 @@ namespace Training.Installers
     {
         public override void InstallBindings()
         {
-            Container
-                .BindInterfacesAndSelfTo<MainMenuModel>()
-                .AsSingle()
-                .NonLazy();
             Container
                 .BindInterfacesAndSelfTo<MainMenuViewModel>()
                 .AsSingle()

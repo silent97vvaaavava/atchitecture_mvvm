@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
+using Core.Infrastructure;
 using Core.Infrastructure.GameFsm;
 using Core.Infrastructure.GameFsm.States;
 using Core.MVVM.Windows;
 using Cysharp.Threading.Tasks;
 using Sample.MVVM.View;
-using Sample.Services;
 
 namespace Sample.Infrastructure.GameFsm.States
 {
