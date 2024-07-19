@@ -48,5 +48,17 @@ namespace Sample.MVVM.View
             _musicToggle.graphic.color = isOn ? Color.white : Color.clear;
             PlayerPrefs.SetInt(MUSIC, isOn ? 1 : 0);
         }
+
+        public override void Hide()
+        {
+            if(OnAnimationHide.GetPersistentEventCount() > 0)
+                OnAnimationHide?.Invoke(() =>
+                {
+                    CanvasGroupElement.blocksRaycasts = false;
+                    CanvasGroupElement.interactable = false;
+                });
+            else 
+                base.Hide();
+        }
     }
 }

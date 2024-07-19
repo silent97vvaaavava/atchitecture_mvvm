@@ -714,6 +714,54 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4807227418574423245, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+      propertyPath: OnAnimationHide.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4807227418574423245, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+      propertyPath: OnAnimationShow.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4807227418574423245, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+      propertyPath: OnAnimationHide.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4482605784582495731}
+    - target: {fileID: 4807227418574423245, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+      propertyPath: OnAnimationShow.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4482605784582495731}
+    - target: {fileID: 4807227418574423245, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+      propertyPath: OnAnimationHide.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4807227418574423245, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+      propertyPath: OnAnimationShow.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4807227418574423245, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+      propertyPath: OnAnimationHide.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Hide
+      objectReference: {fileID: 0}
+    - target: {fileID: 4807227418574423245, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+      propertyPath: OnAnimationShow.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Show
+      objectReference: {fileID: 0}
+    - target: {fileID: 4807227418574423245, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+      propertyPath: OnAnimationHide.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Sample.Scripts.MVVM.Animation.AnimationElement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4807227418574423245, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+      propertyPath: OnAnimationShow.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Sample.Scripts.MVVM.Animation.AnimationElement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4807227418574423245, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+      propertyPath: OnAnimationHide.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4807227418574423245, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+      propertyPath: OnAnimationShow.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5967572092960605754, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
       propertyPath: m_Camera
       value: 
@@ -725,8 +773,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4350821064324832072, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4482605784582495731}
   m_SourcePrefab: {fileID: 100100000, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+--- !u!1 &4482605784582495729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4350821064324832072, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+  m_PrefabInstance: {fileID: 4482605784582495728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &4482605784582495730 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 1033912374834409255, guid: 888b9a57b4228294fa1c8b742f65446c, type: 3}
+  m_PrefabInstance: {fileID: 4482605784582495728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4482605784582495731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4482605784582495729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7169905e694b4491b1cd1d1451a697c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _duration: 5
+  _canvasGroup: {fileID: 4482605784582495730}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
