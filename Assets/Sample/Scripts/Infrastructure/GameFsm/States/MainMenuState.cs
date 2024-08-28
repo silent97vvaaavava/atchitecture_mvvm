@@ -31,7 +31,6 @@ namespace Sample.Infrastructure.GameFsm.States
 
         public void OnEnter()
         {
-            
             _sceneLoader.Load(Scene, OnLoaded);
         }
 

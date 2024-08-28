@@ -7,7 +7,6 @@ namespace Sample.Installers
     {
         public override void InstallBindings()
         {
-             
             Container
                 .BindInterfacesAndSelfTo<GameplayViewModel>()
                 .AsSingle()

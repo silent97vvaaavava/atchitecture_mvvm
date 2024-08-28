@@ -9,7 +9,7 @@ namespace Sample.Scripts.MVVM.Animation
     {
         [SerializeField] private float _duration = 1;
         [SerializeField] private CanvasGroup _canvasGroup;
-        
+          
         private Tween _tween;
         
         public void Show(Action callback)
@@ -20,7 +20,7 @@ namespace Sample.Scripts.MVVM.Animation
             _tween = _canvasGroup
                 .DOFade(1, _duration)
                 .OnKill(() =>
-                {
+                {  
                     callback?.Invoke();
                 });
         }

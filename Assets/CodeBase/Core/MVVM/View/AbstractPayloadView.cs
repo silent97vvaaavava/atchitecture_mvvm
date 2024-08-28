@@ -1,5 +1,4 @@
-﻿using System;
-using Core.MVVM.ViewModel;
+﻿using Core.MVVM.ViewModel;
 using UnityEngine;
 
 namespace Core.MVVM.View
