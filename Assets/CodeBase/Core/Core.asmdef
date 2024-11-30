@@ -1,7 +1,7 @@
 {
     "name": "Core",
     "rootNamespace": "",
-    "references": [],
+    "references": ["UniTask","Zenject"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
