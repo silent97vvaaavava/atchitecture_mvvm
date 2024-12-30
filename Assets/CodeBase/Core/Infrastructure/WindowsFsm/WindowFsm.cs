@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Core.Infrastructure.WindowsFsm
 {
@@ -19,6 +20,8 @@ namespace Core.Infrastructure.WindowsFsm
             _history = new Stack<IWindow>();
         }
 
+        public IWindow CurrentWindow => _currentWindow;
+
         public void Set<TWindow>(TWindow window)
             where TWindow : class, IWindow
         {
@@ -30,11 +33,11 @@ namespace Core.Infrastructure.WindowsFsm
         }
         
         public void Set<TView>() 
-            where TView : class
+            where TView : class, IWindow, new()
         {
             if(_windows.ContainsKey(typeof(TView))) return;
-            
-            var window =  new Window(typeof(TView));
+            Debug.Log($"Set {typeof(TView).Name}");
+            var window =  new TView();
             window.Opened += OnOpened;
             window.Closed += OnClosed;
             _windows.Add(typeof(TView), window);
@@ -52,10 +55,11 @@ namespace Core.Infrastructure.WindowsFsm
 
         public void OpenWindow(Type window, bool inHistory)
         {
+            Debug.Log($"Open Window {window.Name}");
             if (inHistory)
                 OpenedWindow(window);
             else
-                OpenedWindow(window);
+                OpenWindow(window);
         }
         
         public void OpenWindow(Type window) => 
@@ -91,6 +95,7 @@ namespace Core.Infrastructure.WindowsFsm
         {
             if (_currentWindow == _windows[window])
                 return;
+            Debug.Log($"Opened Window {window.Name}");
             _currentWindow?.Close();
             _history.Push(_windows[window]);
             _currentWindow = _history.Peek();

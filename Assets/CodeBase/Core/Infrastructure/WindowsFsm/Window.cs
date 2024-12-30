@@ -9,9 +9,8 @@ namespace Core.Infrastructure.WindowsFsm
         public Type UIWindow { get; }
 
         public Window() { }
-        public Window(Type uiWindow) => UIWindow = uiWindow;
 
-        public void Open() => Opened?.Invoke(UIWindow);
-        public void Close() => Closed?.Invoke(UIWindow);
+        public void Open() => Opened?.Invoke(GetType());
+        public void Close() => Closed?.Invoke(GetType());
     }
 }

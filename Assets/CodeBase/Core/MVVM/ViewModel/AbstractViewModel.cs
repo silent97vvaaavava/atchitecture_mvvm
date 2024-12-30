@@ -1,4 +1,6 @@
 ﻿using System;
+using Core.Infrastructure.WindowsFsm;
+using UnityEngine;
 
 namespace Core.MVVM.ViewModel
 {
@@ -7,18 +9,16 @@ namespace Core.MVVM.ViewModel
         public event Action InvokedOpen;
         public event Action InvokedClose;
 
-        // protected readonly IWindowFsm _windowFsm;
+        protected readonly IWindowFsm _windowFsm;
 
         protected virtual Type Window { get; }
 
-        protected AbstractViewModel(
-            // IWindowFsm windowFsm
-            )
+        protected AbstractViewModel(IWindowFsm windowFsm)
         {
-            // _windowFsm = windowFsm;
-            //
-            // _windowFsm.Opened += HandleOpenedWindow;
-            // _windowFsm.Closed += HandleClosedWindow;
+            _windowFsm = windowFsm;
+            
+            _windowFsm.Opened += HandleOpenedWindow;
+            _windowFsm.Closed += HandleClosedWindow;
         }
 
         public void InvokeOpen()
@@ -33,11 +33,11 @@ namespace Core.MVVM.ViewModel
 
         public void CheckInvoked()
         {
-            // if (_windowFsm.CurrentWindow == null)
-            //     return;
-            //
-            // HandleOpenedWindow(_windowFsm.CurrentWindow.UIWindow);
-            // HandleClosedWindow(_windowFsm.CurrentWindow.UIWindow);
+            if (_windowFsm.CurrentWindow == null)
+                return;
+            
+            HandleOpenedWindow(_windowFsm.CurrentWindow.UIWindow);
+            HandleClosedWindow(_windowFsm.CurrentWindow.UIWindow);
         }
 
         public virtual void OnInvokeOpen()
@@ -55,7 +55,6 @@ namespace Core.MVVM.ViewModel
         protected virtual void HandleOpenedWindow(Type uiWindow)
         {
             if (Window != uiWindow) return;
-
             InvokedOpen?.Invoke();
         }
 

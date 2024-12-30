@@ -2,7 +2,7 @@
     "name": "App.Core.MVVM",
     "rootNamespace": "",
     "references": [
-    ],
+    "GUID:7313a18fb84a8c641b92739504f7fd1b"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

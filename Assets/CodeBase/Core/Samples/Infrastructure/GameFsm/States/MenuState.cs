@@ -45,8 +45,8 @@ namespace Core.Samples.Infrastructure.GameFsm.States
         {
             _windowResolve.CleanUp();
 
-            _windowResolve.Set<MenuWindow>();
-            _windowResolve.Set<SettingsWindow>();
+            _windowResolve.Set<Menu>();
+            _windowResolve.Set<Settings>();
         }
     }
 }

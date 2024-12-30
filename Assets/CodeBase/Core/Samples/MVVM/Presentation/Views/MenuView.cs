@@ -14,6 +14,14 @@ namespace Core.Samples.MVVM.Presentation.Views
         public override void Construct(MenuViewModel viewModel)
         {
             base.Construct(viewModel); 
+            _settingsButton.onClick.AddListener(_viewModel.OnOpenSettings);
+        }
+
+        protected override void OnBeforeDestroy()
+        {
+            base.OnBeforeDestroy();
+
+            _settingsButton.onClick.RemoveListener(_viewModel.OnOpenSettings);
         }
     }
 }
