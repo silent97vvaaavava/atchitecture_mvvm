@@ -1,6 +1,5 @@
 ﻿using System;
 using Core.Infrastructure.WindowsFsm;
-using UnityEngine;
 
 namespace Core.MVVM.ViewModel
 {
@@ -36,8 +35,8 @@ namespace Core.MVVM.ViewModel
             if (_windowFsm.CurrentWindow == null)
                 return;
             
-            HandleOpenedWindow(_windowFsm.CurrentWindow.UIWindow);
-            HandleClosedWindow(_windowFsm.CurrentWindow.UIWindow);
+            HandleOpenedWindow(_windowFsm.CurrentWindow.GetType());
+            HandleClosedWindow(_windowFsm.CurrentWindow.GetType());
         }
 
         public virtual void OnInvokeOpen()

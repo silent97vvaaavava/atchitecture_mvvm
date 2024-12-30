@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Core.Infrastructure.WindowsFsm
 {
@@ -36,7 +35,6 @@ namespace Core.Infrastructure.WindowsFsm
             where TView : class, IWindow, new()
         {
             if(_windows.ContainsKey(typeof(TView))) return;
-            Debug.Log($"Set {typeof(TView).Name}");
             var window =  new TView();
             window.Opened += OnOpened;
             window.Closed += OnClosed;
@@ -55,7 +53,6 @@ namespace Core.Infrastructure.WindowsFsm
 
         public void OpenWindow(Type window, bool inHistory)
         {
-            Debug.Log($"Open Window {window.Name}");
             if (inHistory)
                 OpenedWindow(window);
             else
@@ -95,7 +92,6 @@ namespace Core.Infrastructure.WindowsFsm
         {
             if (_currentWindow == _windows[window])
                 return;
-            Debug.Log($"Opened Window {window.Name}");
             _currentWindow?.Close();
             _history.Push(_windows[window]);
             _currentWindow = _history.Peek();

@@ -7,8 +7,6 @@ namespace Core.Infrastructure.WindowsFsm
         event Action<Type> Opened;
         event Action<Type> Closed;
         
-        Type UIWindow { get; }
-        
         void Open();
         void Close();
     }
