@@ -15,8 +15,7 @@ namespace Core.Infrastructure.GameFsm
             _statesFactory = statesFactory;
         }
 
-        public void Initialize()
-        { }
+        public abstract void Initialize();
 
         public virtual void Enter<TState>() 
             where TState : class, IState

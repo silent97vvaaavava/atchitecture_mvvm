@@ -9,18 +9,27 @@ namespace Core.MVVM.View
     {
         protected TViewModel _viewModel;
         
-        protected virtual void Construct(TViewModel viewModel)
+        public virtual void Construct(TViewModel viewModel)
         {
             _viewModel = viewModel;
 
             _viewModel.InvokedOpen += Show;
             _viewModel.InvokedClose += Hide; 
+            
+            _viewModel.CheckInvoked();
         }
 
+        protected virtual void OnBeforeDestroy() { }
+        
         private void OnDestroy()
         {
+            if(_viewModel == null)
+                return;
+            
             _viewModel.InvokedOpen -= Show;
             _viewModel.InvokedClose -= Hide;
+            
+            OnBeforeDestroy();
         }
     }
 }
