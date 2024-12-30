@@ -44,6 +44,7 @@ namespace Core.Infrastructure.GameFsm
         
         public void AddState<T>() where T : class, IExitableState =>
         _states.Add(typeof(T), _statesFactory.Create<T>());
+        
         protected virtual TState ChangeState<TState>()
             where TState : class, IExitableState
         {
