@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/CodeBase/Core/Samples/Scenes/MVVM/_BootstrapScene.unity
-    guid: 198a84c18ec02c34db3639a92c66d969
+    path: Assets/CodeBase/Core/Samples/Scenes/MVP/_BootstrapScene.unity
+    guid: e8bb5c88694f4c34ca303fb9e3e75484
   - enabled: 1
-    path: Assets/CodeBase/Core/Samples/Scenes/MVVM/MainScene.unity
-    guid: 4cc264108b9dfe94da72e7429fc27f77
+    path: Assets/CodeBase/Core/Samples/Scenes/MVP/MainScene.unity
+    guid: 97a6adee02129c34d8705f23e2f6db71
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 71b4c7394176d164890b54c3c9dce0df, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: b2d272d3b4a642c4b924285a11a34f67, type: 2}

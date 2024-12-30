@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Core.Samples.MVVM.Infrastructure
 {
-    public class MainInstaller : MonoInstaller
+    public class MainInstallerMVVM : MonoInstaller
     {
         public override void InstallBindings()
         {
