@@ -1,0 +1,18 @@
+{
+    "name": "App.Core",
+    "rootNamespace": "",
+    "references": [
+        "UniTask",
+        "Zenject",
+        "App.Core.MVP"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

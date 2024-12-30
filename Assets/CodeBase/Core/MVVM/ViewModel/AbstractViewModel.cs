@@ -1,5 +1,5 @@
 ﻿using System;
-using Core.MVVM.Windows;
+using Core.Infrastructure.WindowsFsm;
 
 namespace Core.MVVM.ViewModel
 {
@@ -9,31 +9,64 @@ namespace Core.MVVM.ViewModel
         public event Action InvokedClose;
 
         protected readonly IWindowFsm _windowFsm;
-        
+
         protected virtual Type Window { get; }
 
-        public AbstractViewModel(IWindowFsm windowFsm)
+        protected AbstractViewModel(IWindowFsm windowFsm)
         {
             _windowFsm = windowFsm;
-
+            
             _windowFsm.Opened += HandleOpenedWindow;
             _windowFsm.Closed += HandleClosedWindow;
         }
-        
-        public abstract void InvokeOpen();
 
-        public abstract void InvokeClose();
-        
+        public void InvokeOpen()
+        {
+            OnInvokeOpen();
+        }
+
+        public void InvokeClose()
+        {
+            OnInvokeClose();
+        }
+
+        public void CheckInvoked()
+        {
+            if (_windowFsm.CurrentWindow == null)
+                return;
+            
+            HandleOpenedWindow(_windowFsm.CurrentWindow.GetType());
+            HandleClosedWindow(_windowFsm.CurrentWindow.GetType());
+        }
+
+        public virtual void OnInvokeOpen()
+        {
+        }
+
+        public virtual void OnInvokeClose()
+        {
+        }
+
+        protected virtual void OnDispose()
+        {
+        }
+
         protected virtual void HandleOpenedWindow(Type uiWindow)
         {
-            if(Window == uiWindow)
-                InvokedOpen?.Invoke();
+            if (Window != uiWindow) return;
+            InvokedOpen?.Invoke();
         }
 
         protected virtual void HandleClosedWindow(Type uiWindow)
         {
-            if(Window == uiWindow)
-                InvokedClose?.Invoke();
+            if (Window != uiWindow) return;
+
+            InvokedClose?.Invoke();
+        }
+
+        public void Dispose()
+        {
+            OnDispose();
         }
     }
 }

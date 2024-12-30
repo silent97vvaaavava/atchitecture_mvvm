@@ -1,0 +1,20 @@
+{
+    "name": "App.Core.Sample",
+    "rootNamespace": "",
+    "references": [
+        "Zenject",
+        "UniTask",
+        "App.Core",
+        "App.Core.MVVM",
+        "App.Core.MVP"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
