@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Core.MVVM.View;
 
-namespace Core.MVVM.Windows
+namespace Core.Infrastructure.WindowsFsm
 {
     public class WindowFsm : IWindowFsm, IWindowResolve
     {
@@ -20,8 +19,18 @@ namespace Core.MVVM.Windows
             _history = new Stack<IWindow>();
         }
 
+        public void Set<TWindow>(TWindow window)
+            where TWindow : class, IWindow
+        {
+            if(_windows.ContainsKey(typeof(TWindow))) return;
+
+            window.Opened += OnOpened;
+            window.Closed += OnClosed;
+            _windows.Add(typeof(TWindow), window);
+        }
+        
         public void Set<TView>() 
-            where TView : class, IView
+            where TView : class
         {
             if(_windows.ContainsKey(typeof(TView))) return;
             

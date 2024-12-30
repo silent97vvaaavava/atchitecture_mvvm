@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core.MVVM.Windows
+namespace Core.Infrastructure.WindowsFsm
 {
     public interface IWindow
     {

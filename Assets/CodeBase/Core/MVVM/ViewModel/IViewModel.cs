@@ -6,8 +6,9 @@ namespace Core.MVVM.ViewModel
     {
         public event Action InvokedOpen;
         public event Action InvokedClose;
-        
+
         void InvokeOpen();
         void InvokeClose();
+        void CheckInvoked();
     }
 }

@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using Core.Domain.Factories;
 using Core.Infrastructure.GameFsm.States;
 
 namespace Core.Infrastructure.GameFsm
 {
-    public abstract class AbstractGameStateMachine : IGameStateMachine
+    public abstract class GameStateMachineBase : IGameStateMachine
     {
-        protected readonly IStatesFactory _factory;
-        protected readonly Dictionary<Type, IExitableState> _states;
+        private readonly Dictionary<Type, IExitableState> _states = new();
+        private readonly IStatesFactory _statesFactory;
         private IExitableState _currentState;
         
-        public AbstractGameStateMachine(IStatesFactory factory)
+        public GameStateMachineBase(IStatesFactory statesFactory)
         {
-            _factory = factory;
-            _states = new Dictionary<Type, IExitableState>();
+            _statesFactory = statesFactory;
         }
-        
+
+        public void Initialize()
+        { }
+
         public virtual void Enter<TState>() 
             where TState : class, IState
         {
@@ -41,7 +42,9 @@ namespace Core.Infrastructure.GameFsm
             IAsyncState state = ChangeState<TState>();
             await state?.OnEnterAsync()!;
         }
-
+        
+        public void AddState<T>() where T : class, IExitableState =>
+        _states.Add(typeof(T), _statesFactory.Create<T>());
         protected virtual TState ChangeState<TState>()
             where TState : class, IExitableState
         {

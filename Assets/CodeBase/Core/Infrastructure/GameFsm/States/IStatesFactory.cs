@@ -1,6 +1,4 @@
-using Core.Infrastructure.GameFsm.States;
-
-namespace Core.Domain.Factories
+namespace Core.Infrastructure.GameFsm.States
 {
     public interface IStatesFactory
     {

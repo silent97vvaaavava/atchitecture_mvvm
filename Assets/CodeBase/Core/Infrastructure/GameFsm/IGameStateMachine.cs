@@ -5,6 +5,7 @@ namespace Core.Infrastructure.GameFsm
 {
     public interface IGameStateMachine
     {
+        void Initialize();
         void Enter<TState>() where TState : class, IState;
         void Enter(Type type);
         
