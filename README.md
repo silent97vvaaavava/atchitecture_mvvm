@@ -5,6 +5,182 @@
 ### Enter Point
 Представлена классом **GameRunner**. Данный класс ответственен за создание _GameRoot_, который запускает в свою очередь жизненные циклы конечной машины состояний. 
 
+# CompositionRoot
+
+## Содержание
+
+- [Цель](#цель)
+- [Как Использовать](#как-использовать)
+- [Исходный Код](#исходный-код)
+
+## Цель
+
+В рамках архитектуры данного проекта, используется подход с корнем композиции `CompositionRoot`,
+используещем `DiContainer`
+для выстраивания более явного порядка вызовов компонентов приложения, а также разделения на контексты с различающимся
+жизненым циклом.
+
+Базовый класс `SceneCompositionRoot` отвечает за инициализацию под-контейнера для сцены и регистрацию зависимостей с
+помощью Zenject DiContainer.
+
+Это позволяет:
+
+- Создавать специфичные для сцены зависимости.
+- Управлять жизненным циклом объектов сцены.
+- Добавить прозрачность в порядок вызовов подсистем приложения, в рамках сцены.
+
+## Как Использовать
+
+> [!WARNING]
+> Метод `Initialize()` имеет возвращаемый тип `UniTask`, что обязывает нас в вызывающем коде использовать некоторые
+> конструкции!
+>
+>В случае async ожидания:
+> ```csharp
+> await _compositionRoot.Initialize(_container);
+> ```
+> Или когда мы не ждём завершения инициализации и просто запускаем метод:
+> ```csharp
+>_compositionRoot.Initialize(_container).Forget();
+>```
+
+<details>
+
+<summary>Простой пример</summary>
+
+1. Создайте класс, унаследованный от `SceneCompositionRoot`.
+2. Реализуйте метод `Initialize` для настройки DiContainer.
+    ```csharp
+   public class SomeSpecificCompositionRoot : SceneCompositionRoot
+   {
+   private DiContainer _sceneContainer;
+
+       public override UniTask Initialize(DiContainer diContainer)
+       {
+           _sceneContainer = diContainer.CreateSubContainer();
+
+           // Пример привязок
+           _sceneContainer.Bind<SomeDependency>().AsSingle();
+
+           return default;
+       }
+   }
+    ```
+3. Используйте `SceneInitializer` для инициализации сцены.
+
+    ```csharp
+    public class SomeGameState : IPayloadedState<string>
+    {
+        private readonly SceneInitializer _sceneInitializer;
+    
+        public SomeGameState(SceneInitializer sceneInitializer)
+        {
+            _sceneInitializer = sceneInitializer;
+        }
+    
+        public void OnEnter(string sceneName)
+        {
+            _sceneInitializer.Initialize().Forget();
+        }
+    }
+    ```
+
+</details>
+
+<details>
+
+<summary>Пример биндинга зависимостей для GameEvents фичи</summary>
+
+```csharp
+public class GameplayCompositionRoot : SceneCompositionRoot
+{
+    [SerializeField] private GameEventConfig _gameEventConfig;
+    [SerializeField] private ChoiceEventView _choiceEventView;
+    [SerializeField] private NotifyEventView _notifyEventView;
+    [SerializeField] private QuestEventView _questEventView;
+    
+    private GameEventService _gameEventService;
+    private GameEventFactory _eventFactory;
+    private DiContainer _sceneContainer;
+    
+    public override UniTask Initialize(DiContainer diContainer)
+    {
+        // Создаем под-контейнер для сцены
+        _sceneContainer = diContainer.CreateSubContainer();
+
+        // Инжектируем зависимости
+        _sceneContainer.BindInstance(_choiceEventView).AsSingle();
+        _sceneContainer.BindInstance(_notifyEventView).AsSingle();
+        _sceneContainer.BindInstance(_questEventView).AsSingle();
+        _sceneContainer.Bind<ITagDataContainer>().To<TestTagDataContainer>().AsSingle();
+        _sceneContainer.Bind<RequirementFactory>().AsSingle();
+        _sceneContainer.Bind<ImpactFactory>().AsSingle();
+        _sceneContainer.Bind<ChoiceFactory>().AsSingle();
+        _sceneContainer.Bind<StrategyFactory>().AsSingle();
+        _sceneContainer.Bind<GameEventFactory>().AsSingle();
+        _sceneContainer.Bind<GameEventService>().AsSingle();
+        _sceneContainer.Bind<WithChoicesEventPresenter>().AsTransient();
+        _sceneContainer.Bind<NotifyEventPresenter>().AsTransient();
+        _sceneContainer.Bind<QuestEventPresenter>().AsTransient();
+
+        // Разрешаем зависимости
+        _eventFactory = _sceneContainer.Resolve<GameEventFactory>();
+        _gameEventService = _sceneContainer.Resolve<GameEventService>();
+        _choiceEventView.Construct(_sceneContainer.Resolve<WithChoicesEventPresenter>());
+        _notifyEventView.Construct(_sceneContainer.Resolve<NotifyEventPresenter>());
+        _questEventView.Construct(_sceneContainer.Resolve<QuestEventPresenter>());
+        
+        // В случае асинхронной инициализации возвращаем UniTask
+        return default;
+    }
+}
+```
+
+</details>
+
+## Исходный Код
+
+<details>
+
+<summary>SceneCompositionRoot</summary>
+
+```csharp
+public abstract class SceneCompositionRoot : MonoBehaviour
+{
+    public abstract UniTask Initialize(DiContainer diContainer);
+}
+```
+
+</details>
+
+<details>
+
+<summary>SceneInitializer</summary>
+
+```csharp
+public class SceneInitializer
+{
+    private readonly DiContainer _diContainer;
+    public SceneInitializer(DiContainer diContainer)
+    {
+        _diContainer = diContainer ?? throw new ArgumentNullException(nameof(diContainer));
+    }
+    public UniTask Initialize()
+    {
+        SceneCompositionRoot[] compositionRoots = Object.FindObjectsOfType<SceneCompositionRoot>();
+        if (compositionRoots.Length > 1)
+        {
+            throw new Exception($"Scene has multiple composition roots!" +
+                                " Must use only one composition root" +
+                                $" roots:{string.Join(",", compositionRoots.Select(root => root.name))}");
+        }
+        return compositionRoots[0].Initialize(_diContainer);
+    }
+}
+```
+
+</details>
+
 ### Game State Machine
 Конечная машина состояний, которая управляет жизненным циклом проекта.
 Реализует интерфейс IGameStateMachine, который требует реализацию методов смены состояний.
